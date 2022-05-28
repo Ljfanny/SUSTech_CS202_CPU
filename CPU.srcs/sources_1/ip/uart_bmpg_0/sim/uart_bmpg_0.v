@@ -1,6 +1,4 @@
-
-// 
-// (c) Copyright 2008 - 2013 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2022 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -46,32 +44,46 @@
 // THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS
 // PART OF THIS FILE AT ALL TIMES.
 // 
-//----------------------------------------------------------------------------
-// User entered comments
-//----------------------------------------------------------------------------
-// None
-//
-//----------------------------------------------------------------------------
-//  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
-//   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
-//----------------------------------------------------------------------------
-// clk_out1____23.000______0.000______50.0______342.117____303.235
-//
-//----------------------------------------------------------------------------
-// Input Clock   Freq (MHz)    Input Jitter (UI)
-//----------------------------------------------------------------------------
-// __primary_________100.000____________0.010
+// DO NOT MODIFY THIS FILE.
 
-// The following must be inserted into your Verilog file for this
-// core to be instantiated. Change the instance name and port connections
-// (in parentheses) to your own signal names.
 
-//----------- Begin Cut here for INSTANTIATION Template ---// INST_TAG
+// IP VLNV: SEU_CSE_507:user:uart_bmpg:1.3
+// IP Revision: 8
 
-  cpuclk instance_name
-   (
-    // Clock out ports
-    .clk_out1(clk_out1),     // output clk_out1
-   // Clock in ports
-    .clk_in1(clk_in1));      // input clk_in1
-// INST_TAG_END ------ End INSTANTIATION Template ---------
+`timescale 1ns/1ps
+
+(* DowngradeIPIdentifiedWarnings = "yes" *)
+module uart_bmpg_0 (
+  upg_clk_i,
+  upg_rst_i,
+  upg_clk_o,
+  upg_wen_o,
+  upg_adr_o,
+  upg_dat_o,
+  upg_done_o,
+  upg_rx_i,
+  upg_tx_o
+);
+
+input wire upg_clk_i;
+input wire upg_rst_i;
+output wire upg_clk_o;
+output wire upg_wen_o;
+output wire [14 : 0] upg_adr_o;
+output wire [31 : 0] upg_dat_o;
+output wire upg_done_o;
+input wire upg_rx_i;
+output wire upg_tx_o;
+
+  upg inst (
+    .upg_clk_i(upg_clk_i),
+    .upg_rst_i(upg_rst_i),
+    .upg_clk_o(upg_clk_o),
+    .upg_wen_o(upg_wen_o),
+    .upg_adr_o(upg_adr_o),
+    .upg_dat_o(upg_dat_o),
+    .upg_done_o(upg_done_o),
+    .upg_rx_i(upg_rx_i),
+    .upg_tx_o(upg_tx_o)
+  );
+endmodule
