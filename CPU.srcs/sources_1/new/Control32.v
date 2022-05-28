@@ -15,7 +15,12 @@ module Control32(
     output Jal,
     output I_format,
     output Sftmd,
-    output [1:0] ALUOp
+    output [1:0] ALUOp,
+    input[21:0] Alu_resultHigh,
+    output MemorIOtoReg,
+    output MemRead,
+    output IORead,
+    output IOWrite    
     );
     wire R_format, Lw, Sw;
     assign R_format = (Opcode == 6'b000000)? 1'b1:1'b0;
@@ -26,7 +31,7 @@ module Control32(
     assign ALUSrc = (I_format || Lw || Sw);
     assign MemtoReg = Lw;
     assign RegWrite = (R_format || Lw || Jal || I_format) && (~Jr);
-    assign MemWrite = Sw;
+    assign MemWrite = ((Sw == 1'b1) || (Alu_resultHigh[21:0] != 22'h3FFFFF)) ? 1'b1 : 1'b0;
     assign Branch = (Opcode==6'b000100)? 1'b1:1'b0;
     assign nBranch = (Opcode==6'b000101)? 1'b1:1'b0;
     assign Jal = (Opcode==6'b000011)? 1'b1:1'b0;
@@ -37,4 +42,9 @@ module Control32(
                             || (Function_opcode==6'b000110) || (Function_opcode==6'b000111))
                             && R_format)? 1'b1:1'b0;
      assign ALUOp = {(R_format || I_format),(Branch || nBranch)};
+     assign MemRead = (Lw  == 1'b1 && (Alu_resultHigh[21:0] != 22'h3FFFFF)) ? 1'b1 : 1'b0;
+     assign IORead = (Lw  == 1'b1 && (Alu_resultHigh[21:0] == 22'h3FFFFF)) ? 1'b1 : 1'b0;
+     assign IOWrite = (Sw  == 1'b1 && (Alu_resultHigh[21:0] == 22'h3FFFFF)) ? 1'b1 : 1'b0;
+     // Read operations require reading data from memory or I/O to write to the register
+     assign MemorIOtoReg = IORead || MemRead;
 endmodule
