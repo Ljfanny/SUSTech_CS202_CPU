@@ -27,7 +27,7 @@ module MemOrIO(
         if((mWrite==1)||(ioWrite==1))
         //wirte_data could go to either memory or IO. where is it from?
         //have something wrong.
-            write_data = (mWrite == 1'b1) ? r_rdata : {16'h0000, r_rdata[15:0]};
+            write_data = (mWrite == 1'b1) ? r_rdata : {{15{1'b1}}, r_rdata[16:0]};
         else
             write_data = 32'hZZZZZZZZ;
         end
