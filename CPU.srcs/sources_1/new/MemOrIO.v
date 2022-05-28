@@ -5,8 +5,8 @@ module MemOrIO(
     input mWrite,
     input ioRead,
     input ioWrite,
-    input [31:0] addr_in,
-    output [31:0] addr_out,
+//    input [31:0] addr_in,
+//    output [31:0] addr_out,
     input [31:0] m_rdata,
     input [23:0] io_rdata,
     output [31:0] r_wdata,
@@ -16,7 +16,7 @@ module MemOrIO(
     output SwitchCtrl
     );
     
-    assign addr_out= addr_in;
+//    assign addr_out= addr_in;
     // The data wirte to register file may be from memory or io. 
     // While the data is from io, it should be the lower 16bit of r_wdata. 
     assign r_wdata = (ioRead == 1'b1) ? {8'h00, io_rdata} : m_rdata;
