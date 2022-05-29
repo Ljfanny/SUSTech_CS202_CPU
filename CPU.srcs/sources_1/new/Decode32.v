@@ -4,11 +4,11 @@ module Decode32(
     output [31:0] read_data_1,
     output [31:0] read_data_2, 
     input [31:0] Instruction,
-    input [31:0] mem_data,
+    input [31:0] read_data, //from mem or io
     input [31:0] ALU_result,
     input Jal,
     input RegWrite,
-    input MemtoReg,
+    input MemtoReg, // MemOrIOtoReg
     input RegDst,
     output [31:0] Sign_extend,
     input clock,
@@ -69,7 +69,7 @@ module Decode32(
     
     //write what?
     always @* begin
-        if (MemtoReg == 1'b1) WriteRegData <= mem_data;
+        if (MemtoReg == 1'b1) WriteRegData <= read_data;
         else if (Opcode == 6'b000011 && Jal == 1'b1) WriteRegData <= opcplus4;
         else WriteRegData <= ALU_result;
     end

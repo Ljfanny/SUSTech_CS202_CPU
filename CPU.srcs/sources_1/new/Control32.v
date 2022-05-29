@@ -6,7 +6,7 @@ module Control32(
     output Jr,
     output RegDST,
     output ALUSrc,
-    output MemtoReg,
+  //  output MemtoReg,
     output RegWrite,
     output MemWrite,
     output Branch,
@@ -29,7 +29,7 @@ module Control32(
     assign Jr = ((Opcode==6'b000000) && (Function_opcode==6'b001000)) ? 1'b1 : 1'b0; 
     assign RegDST = R_format && (~I_format && ~Lw);
     assign ALUSrc = (I_format || Lw || Sw);
-    assign MemtoReg = Lw;
+  //  assign MemtoReg = Lw;
     assign RegWrite = (R_format || Lw || Jal || I_format) && (~Jr);
     assign MemWrite = ((Sw == 1'b1) || (Alu_resultHigh[21:0] != 22'h3FFFFF)) ? 1'b1 : 1'b0;
     assign Branch = (Opcode==6'b000100)? 1'b1:1'b0;

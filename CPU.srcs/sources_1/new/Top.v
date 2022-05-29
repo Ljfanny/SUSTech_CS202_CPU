@@ -23,8 +23,8 @@
 module Top(
     input rst,
     input clk,
-    input[23:0] sw,
-    output[23:0] led
+    input[23:0] sw, //[23:21], [16:0]
+    output[16:0] led 
     //uart programmer pinouts
     //start uart communicate at high level
     //input start_pg, //active high
@@ -53,26 +53,25 @@ module Top(
     );
     
     //controller
-    wire regDst, aluSrc, memToReg, regWrite, memWrite, i_format, sftmd, memoryIOtoReg;
+    wire regDst, aluSrc,regWrite, memWrite, i_format, sftmd, memoryIOtoReg;
     wire[1:0] aluOp;
-    wire[31:0] alu_result;
+    wire[31:0] alu_result; //address
     wire memorIOtoReg, memRead, ioRead, ioWrite;
     Control32 controller(
         instruction[31:26], instruction[5:0],
-        jr, regDst, aluSrc, memToReg, regWrite, memWrite,
+        jr, regDst, aluSrc, regWrite, memWrite,
         branch, nbranch, jmp, jal, i_format, sftmd,
         aluOp, alu_result[31:10],
         memorIOtoReg, memRead, ioRead, ioWrite
     );
 
     //decoder
-    
-    wire[31:0] mem_data;
+    wire[31:0] read_data; //read from MemOrIO, lw into register
     wire[31:0] sign_extend;
     Decode32 decoder(
         reg_read_data1, reg_read_data2,
-        instruction, mem_data, alu_result,
-        jal, regWrite, memToReg, regDst,
+        instruction, read_data, alu_result,
+        jal, regWrite, memorIOtoReg, regDst,
         sign_extend, clk_23, rst,
         link_addr
     );
@@ -87,11 +86,30 @@ module Top(
     );
 
     //data memory
+    wire[31:0] write_data; //write into mem, from MemOrIO processing reg_data2
+    wire[31:0] mem_data;
     dmemory32 data_memory(
-        clk_23, memWrite, addr_result, reg_read_data2,
+        clk_23, memWrite, alu_result, write_data,
         mem_data
     );
-    
-    
+
+    //wire ledCtrl, swCtrl;
+    wire swCtrl;
+    //switch
+
+    //ioread(convert sw into r_rdata)
+    wire[23:0] io_read_data;
+    IOread read_sw_module(rst, ioRead, swCtrl, sw, io_read_data);
+
+    //memoryOrIO, read_data is the one into decoder
+    MemOrIO memorio(
+        memRead, memWrite, ioRead, ioWrite, alu_result,
+        mem_data, io_read_data, reg_read_data2,
+        read_data, write_data
+    );
+
+    //io - led
+    Leds io_led(clk, rst, ioWrite, write_data, led);
+        
     
 endmodule
