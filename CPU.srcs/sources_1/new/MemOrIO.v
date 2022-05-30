@@ -11,7 +11,7 @@ module MemOrIO(
     input [23:0] io_rdata, //read from io
     input [31:0] r_rdata, //data read from register when sw
     output [31:0] r_wdata, //data write into register when lw
-    output reg [31:0] write_data, // write into memory or io
+    output reg [31:0] write_data// write into memory or io
    // output LEDCtrl
    // output SwitchCtrl
     );
