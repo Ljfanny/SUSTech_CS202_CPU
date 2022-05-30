@@ -12,6 +12,13 @@
 
 ## 功能
 
+### 数据段
+
+- 0x00000000 - 0x00010000 ：RAM，`.data`
+- 0xFFFFFC50 - 0xFFFFFC53 ：button，用于判断读入 switch 输入
+- 0xFFFFFC60 - 0xFFFFFC63 ：led[16:0] only，只能用于 `sw`
+- 0xFFFFFC70 - 0xFFFFFC73 ：switch[23:0] onlu，只能用于 `lw`
+
 ### 实现指令
 
 - Minisys中的全部指令

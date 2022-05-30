@@ -62,7 +62,7 @@ module Top(
         instruction[31:26], instruction[5:0],
         jr, regDst, aluSrc, regWrite, memWrite,
         branch, nbranch, jmp, jal, i_format, sftmd,
-        aluOp, alu_result[31:10],
+        aluOp, alu_result,
         memorIOtoReg, memRead, ioRead, ioWrite
     );
 
