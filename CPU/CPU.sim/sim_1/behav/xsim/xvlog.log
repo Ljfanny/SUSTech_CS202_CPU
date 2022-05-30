@@ -1,0 +1,4 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/LearningMaterial/sophomore_second/计组/SUSTech_CS202_CPU/CPU/CPU.srcs/sources_1/new/Executs32.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Executs32
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/LearningMaterial/sophomore_second/计组/SUSTech_CS202_CPU/CPU/CPU.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl
