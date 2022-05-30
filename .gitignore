@@ -51,6 +51,9 @@ CPU.ip_user_files/
 CPU.runs/
 CPU.sim/
 
+## ips
+ip/
+
 ###### for Xilinx Vivado|ISE
 .Xil/
 .cache/
