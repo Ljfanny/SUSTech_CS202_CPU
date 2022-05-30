@@ -14,11 +14,11 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 50848 
+INFO: Helper process launched with PID 9232 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 355.562 ; gain = 100.445
+Starting RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 341.629 ; gain = 101.668
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'RAM' [d:/LearningMaterial/sophomore_second/计组/SUSTech_CS202_CPU/CPU/CPU.srcs/sources_1/ip/RAM/synth/RAM.vhd:69]
+INFO: [Synth 8-638] synthesizing module 'RAM' [d:/1git/SUSTech_CS202_CPU/CPU/CPU.srcs/sources_1/ip/RAM/synth/RAM.vhd:69]
 	Parameter C_FAMILY bound to: artix7 - type: string 
 	Parameter C_XDEVICEFAMILY bound to: artix7 - type: string 
 	Parameter C_ELABORATION_DIR bound to: ./ - type: string 
@@ -92,8 +92,8 @@ INFO: [Synth 8-638] synthesizing module 'RAM' [d:/LearningMaterial/sophomore_sec
 	Parameter C_COUNT_36K_BRAM bound to: 14 - type: string 
 	Parameter C_COUNT_18K_BRAM bound to: 1 - type: string 
 	Parameter C_EST_POWER_SUMMARY bound to: Estimated Power for IP     :     13.776802 mW - type: string 
-INFO: [Synth 8-3491] module 'blk_mem_gen_v8_4_1' declared at 'd:/LearningMaterial/sophomore_second/计组/SUSTech_CS202_CPU/CPU/CPU.srcs/sources_1/ip/RAM/hdl/blk_mem_gen_v8_4_vhsyn_rfs.vhd:195313' bound to instance 'U0' of component 'blk_mem_gen_v8_4_1' [d:/LearningMaterial/sophomore_second/计组/SUSTech_CS202_CPU/CPU/CPU.srcs/sources_1/ip/RAM/synth/RAM.vhd:232]
-INFO: [Synth 8-256] done synthesizing module 'RAM' (11#1) [d:/LearningMaterial/sophomore_second/计组/SUSTech_CS202_CPU/CPU/CPU.srcs/sources_1/ip/RAM/synth/RAM.vhd:69]
+INFO: [Synth 8-3491] module 'blk_mem_gen_v8_4_1' declared at 'd:/1git/SUSTech_CS202_CPU/CPU/CPU.srcs/sources_1/ip/RAM/hdl/blk_mem_gen_v8_4_vhsyn_rfs.vhd:195313' bound to instance 'U0' of component 'blk_mem_gen_v8_4_1' [d:/1git/SUSTech_CS202_CPU/CPU/CPU.srcs/sources_1/ip/RAM/synth/RAM.vhd:232]
+INFO: [Synth 8-256] done synthesizing module 'RAM' (11#1) [d:/1git/SUSTech_CS202_CPU/CPU/CPU.srcs/sources_1/ip/RAM/synth/RAM.vhd:69]
 WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port MUX_RST[0]
 WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port MEM_LAT_RST
 WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port MEM_REG_RST
@@ -195,4 +195,295 @@ WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected p
 WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port SBITERRIN[49]
 WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port SBITERRIN[48]
 INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-TclStackFree: incorrect freePtr. Call out of sequence?
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:02:06 ; elapsed = 00:02:08 . Memory (MB): peak = 640.363 ; gain = 400.402
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:02:07 ; elapsed = 00:02:08 . Memory (MB): peak = 640.363 ; gain = 400.402
+---------------------------------------------------------------------------------
+INFO: [Netlist 29-17] Analyzing 15 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Device 21-403] Loading part xc7a100tfgg484-1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [d:/1git/SUSTech_CS202_CPU/CPU/CPU.srcs/sources_1/ip/RAM/RAM_ooc.xdc] for cell 'U0'
+Finished Parsing XDC File [d:/1git/SUSTech_CS202_CPU/CPU/CPU.srcs/sources_1/ip/RAM/RAM_ooc.xdc] for cell 'U0'
+Parsing XDC File [D:/1git/SUSTech_CS202_CPU/CPU/CPU.runs/RAM_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [D:/1git/SUSTech_CS202_CPU/CPU/CPU.runs/RAM_synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.012 . Memory (MB): peak = 760.059 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:02:20 ; elapsed = 00:02:23 . Memory (MB): peak = 760.059 ; gain = 520.098
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tfgg484-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:02:20 ; elapsed = 00:02:23 . Memory (MB): peak = 760.059 ; gain = 520.098
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property DONT_TOUCH = true for U0. (constraint file  D:/1git/SUSTech_CS202_CPU/CPU/CPU.runs/RAM_synth_1/dont_touch.xdc, line 9).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:02:20 ; elapsed = 00:02:23 . Memory (MB): peak = 760.059 ; gain = 520.098
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:02:21 ; elapsed = 00:02:23 . Memory (MB): peak = 760.059 ; gain = 520.098
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Registers : 
+	                2 Bit    Registers := 2     
++---Muxes : 
+	   4 Input     32 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 8     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module bindec 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 4     
+Module blk_mem_gen_mux 
+Detailed RTL Component Info : 
++---Registers : 
+	                2 Bit    Registers := 1     
++---Muxes : 
+	   4 Input     32 Bit        Muxes := 1     
+Module blk_mem_gen_mux__parameterized0 
+Detailed RTL Component Info : 
++---Registers : 
+	                2 Bit    Registers := 1     
++---Muxes : 
+	   4 Input     32 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:02:21 ; elapsed = 00:02:24 . Memory (MB): peak = 760.059 ; gain = 520.098
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:02:32 ; elapsed = 00:02:35 . Memory (MB): peak = 760.059 ; gain = 520.098
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:02:32 ; elapsed = 00:02:35 . Memory (MB): peak = 760.059 ; gain = 520.098
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:02:33 ; elapsed = 00:02:35 . Memory (MB): peak = 761.629 ; gain = 521.668
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:02:34 ; elapsed = 00:02:36 . Memory (MB): peak = 761.629 ; gain = 521.668
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:02:34 ; elapsed = 00:02:36 . Memory (MB): peak = 761.629 ; gain = 521.668
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:34 ; elapsed = 00:02:36 . Memory (MB): peak = 761.629 ; gain = 521.668
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:02:34 ; elapsed = 00:02:36 . Memory (MB): peak = 761.629 ; gain = 521.668
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:02:34 ; elapsed = 00:02:36 . Memory (MB): peak = 761.629 ; gain = 521.668
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:02:34 ; elapsed = 00:02:36 . Memory (MB): peak = 761.629 ; gain = 521.668
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----------+------+
+|      |Cell       |Count |
++------+-----------+------+
+|1     |LUT2       |     4|
+|2     |LUT6       |    27|
+|3     |RAMB18E1   |     1|
+|4     |RAMB36E1   |     2|
+|5     |RAMB36E1_1 |    12|
+|6     |FDRE       |     2|
++------+-----------+------+
+
+Report Instance Areas: 
++------+---------------------------------------------+-----------------------------------------------+------+
+|      |Instance                                     |Module                                         |Cells |
++------+---------------------------------------------+-----------------------------------------------+------+
+|1     |top                                          |                                               |    48|
+|2     |  U0                                         |blk_mem_gen_v8_4_1                             |    48|
+|3     |    inst_blk_mem_gen                         |blk_mem_gen_v8_4_1_synth                       |    48|
+|4     |      \gnbram.gnativebmg.native_blk_mem_gen  |blk_mem_gen_top                                |    48|
+|5     |        \valid.cstr                          |blk_mem_gen_generic_cstr                       |    48|
+|6     |          \bindec_a.bindec_inst_a            |bindec                                         |     2|
+|7     |          \has_mux_a.A                       |blk_mem_gen_mux                                |    29|
+|8     |          \ramloop[0].ram.r                  |blk_mem_gen_prim_width                         |     1|
+|9     |            \prim_init.ram                   |blk_mem_gen_prim_wrapper_init                  |     1|
+|10    |          \ramloop[10].ram.r                 |blk_mem_gen_prim_width__parameterized9         |     1|
+|11    |            \prim_init.ram                   |blk_mem_gen_prim_wrapper_init__parameterized9  |     1|
+|12    |          \ramloop[11].ram.r                 |blk_mem_gen_prim_width__parameterized10        |     1|
+|13    |            \prim_init.ram                   |blk_mem_gen_prim_wrapper_init__parameterized10 |     1|
+|14    |          \ramloop[12].ram.r                 |blk_mem_gen_prim_width__parameterized11        |     1|
+|15    |            \prim_init.ram                   |blk_mem_gen_prim_wrapper_init__parameterized11 |     1|
+|16    |          \ramloop[13].ram.r                 |blk_mem_gen_prim_width__parameterized12        |     1|
+|17    |            \prim_init.ram                   |blk_mem_gen_prim_wrapper_init__parameterized12 |     1|
+|18    |          \ramloop[14].ram.r                 |blk_mem_gen_prim_width__parameterized13        |     1|
+|19    |            \prim_init.ram                   |blk_mem_gen_prim_wrapper_init__parameterized13 |     1|
+|20    |          \ramloop[1].ram.r                  |blk_mem_gen_prim_width__parameterized0         |     1|
+|21    |            \prim_init.ram                   |blk_mem_gen_prim_wrapper_init__parameterized0  |     1|
+|22    |          \ramloop[2].ram.r                  |blk_mem_gen_prim_width__parameterized1         |     1|
+|23    |            \prim_init.ram                   |blk_mem_gen_prim_wrapper_init__parameterized1  |     1|
+|24    |          \ramloop[3].ram.r                  |blk_mem_gen_prim_width__parameterized2         |     1|
+|25    |            \prim_init.ram                   |blk_mem_gen_prim_wrapper_init__parameterized2  |     1|
+|26    |          \ramloop[4].ram.r                  |blk_mem_gen_prim_width__parameterized3         |     2|
+|27    |            \prim_init.ram                   |blk_mem_gen_prim_wrapper_init__parameterized3  |     2|
+|28    |          \ramloop[5].ram.r                  |blk_mem_gen_prim_width__parameterized4         |     2|
+|29    |            \prim_init.ram                   |blk_mem_gen_prim_wrapper_init__parameterized4  |     2|
+|30    |          \ramloop[6].ram.r                  |blk_mem_gen_prim_width__parameterized5         |     1|
+|31    |            \prim_init.ram                   |blk_mem_gen_prim_wrapper_init__parameterized5  |     1|
+|32    |          \ramloop[7].ram.r                  |blk_mem_gen_prim_width__parameterized6         |     1|
+|33    |            \prim_init.ram                   |blk_mem_gen_prim_wrapper_init__parameterized6  |     1|
+|34    |          \ramloop[8].ram.r                  |blk_mem_gen_prim_width__parameterized7         |     1|
+|35    |            \prim_init.ram                   |blk_mem_gen_prim_wrapper_init__parameterized7  |     1|
+|36    |          \ramloop[9].ram.r                  |blk_mem_gen_prim_width__parameterized8         |     1|
+|37    |            \prim_init.ram                   |blk_mem_gen_prim_wrapper_init__parameterized8  |     1|
++------+---------------------------------------------+-----------------------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:02:34 ; elapsed = 00:02:36 . Memory (MB): peak = 761.629 ; gain = 521.668
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 200 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:20 ; elapsed = 00:02:28 . Memory (MB): peak = 761.629 ; gain = 401.973
+Synthesis Optimization Complete : Time (s): cpu = 00:02:34 ; elapsed = 00:02:36 . Memory (MB): peak = 761.629 ; gain = 521.668
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 15 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+17 Infos, 100 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:02:35 ; elapsed = 00:02:39 . Memory (MB): peak = 771.703 ; gain = 541.805
+INFO: [Common 17-1381] The checkpoint 'D:/1git/SUSTech_CS202_CPU/CPU/CPU.runs/RAM_synth_1/RAM.dcp' has been generated.
+INFO: [Coretcl 2-1482] Added synthesis output to IP cache for IP d:/1git/SUSTech_CS202_CPU/CPU/CPU.srcs/sources_1/ip/RAM/RAM.xci
+INFO: [Coretcl 2-1174] Renamed 36 cell refs.
+INFO: [Common 17-1381] The checkpoint 'D:/1git/SUSTech_CS202_CPU/CPU/CPU.runs/RAM_synth_1/RAM.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file RAM_utilization_synth.rpt -pb RAM_utilization_synth.pb
+report_utilization: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.044 . Memory (MB): peak = 771.703 ; gain = 0.000
+INFO: [Common 17-206] Exiting Vivado at Mon May 30 18:55:20 2022...

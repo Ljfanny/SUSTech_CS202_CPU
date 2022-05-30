@@ -1,0 +1,13 @@
+
+*** Running vivado
+    with args -log Top.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source Top.tcl
+
+
+****** Vivado v2017.4 (64-bit)
+  **** SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
+  **** IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+    ** Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+
+source Top.tcl -notrace
+ERROR: [Vivado 12-172] File or Directory 'D:/../../MicrosoftEdgeDownload/dmem32.coe' does not exist
+INFO: [Common 17-206] Exiting Vivado at Mon May 30 18:56:41 2022...

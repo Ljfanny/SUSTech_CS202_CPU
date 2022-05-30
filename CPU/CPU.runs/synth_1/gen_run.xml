@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tfgg484-1" LaunchTime="1653902434">
+<GenRun Id="synth_1" LaunchPart="xc7a100tfgg484-1" LaunchTime="1653908194">
   <File Type="PA-TCL" Name="Top.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="Top_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="Top_reports.tcl"/>
@@ -102,6 +102,18 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/ip/prgrom/prgmip32.coe">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../../MicrosoftEdgeDownload/dmem32.coe">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="C:/Users/w4890/AppData/Roaming/Xilinx/Vivado/MicrosoftEdgeDownload/dmem32.coe">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
