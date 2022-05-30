@@ -1,4 +1,0 @@
-
-*** Running vivado
-    with args -log cpu_clk.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source cpu_clk.tcl
-
