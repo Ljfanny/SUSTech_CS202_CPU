@@ -35,6 +35,6 @@ module Leds(
         else if (ioWrite)
             led <= write_data[16:0];
         else
-            led <= 17'b0;
+            led <= led;
     end
 endmodule

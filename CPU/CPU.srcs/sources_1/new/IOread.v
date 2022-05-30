@@ -10,12 +10,12 @@ module IOread(
 );
     always @* begin
         if(reset == 1'b1)
-            io_read_data = 24'h0000_0000;
-        else if(io_read_ctrl == 1'b1) begin
-            if(switchctrl == 1'b1)
+            io_read_data = 24'hFFFF_FF;
+        //else if(io_read_ctrl == 1'b1) begin
+            else if(switchctrl == 1'b1)
                 io_read_data = io_read_switch;
-//            else 
-//                io_read_data = io_read_data;    
-        end    
+            else 
+               io_read_data = 24'hFFFF_FF;    
+        //end    
     end
 endmodule
