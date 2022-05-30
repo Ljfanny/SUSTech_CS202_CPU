@@ -6,7 +6,7 @@ start: lui   $1,0xFFFF
        addi   $s0, $zero, 0
        addi   $s2, $zero, 1
        addi   $s3, $zero, 2
-# ²âÊÔÁ½¸öÊýÏà¼Ó -> º­¸Çbutton¹¦ÄÜ
+# æµ‹è¯•ä¸¤ä¸ªæ•°ç›¸åŠ  -> æ¶µç›–buttonåŠŸèƒ½
 # 0xFFFFFC64 65 66 67       		
 switled:
 	lw   $t0, 0xC64($28)

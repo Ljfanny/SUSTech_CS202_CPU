@@ -1,11 +1,11 @@
 .data 0x0000				      		
 	buf: .word 0x0000
 .text 0x0000
-# ³õÊ¼»¯				
+# åˆå§‹åŒ–				
 initialization: 
 	lui $1, 0xFFFF			
         ori $28, $1, 0xF000
-        # ³õÊ¼»¯³É0-7
+        # åˆå§‹åŒ–æˆ0-7
         ori $s0, $zero, 0
         ori $s1, $zero, 1 
         ori $s2, $zero, 2 
@@ -26,15 +26,15 @@ loop:
 	beq $1, $s5, case5
 	beq $1, $s6, case6
 	beq $1, $s7, case7
-#ÅĞ¶ÏÊÇ·ñ»ØÎÄ²¢ÏÔÊ¾Êı¾İ	
+#åˆ¤æ–­æ˜¯å¦å›æ–‡å¹¶æ˜¾ç¤ºæ•°æ®	
 case0:	lw $t0, 0xC70($28)
 	sw $t0, 0xC60($28)
-	#ÓÃÓÚ¼ÆÊı
+	#ç”¨äºè®¡æ•°
 	addi $t1, $zero, 16
-	#ÓÃÓÚ±£´æÔ­Êı¾İ
+	#ç”¨äºä¿å­˜åŸæ•°æ®
 	addi $t2, $t0, 0
 	addi $t5, $t0, 0
-	#·´×ªºóµÄ½á¹û
+	#åè½¬åçš„ç»“æœ
 	addi $t4, $zero, 0
 	for_case0: srl $t0, $t0, 1
 	           sll $t0, $t0, 1
@@ -58,13 +58,13 @@ case0:	lw $t0, 0xC70($28)
 		   j exit  
 		   is_huiwen: sw $zero, 0xC62($28)
 		   	      j exit  
-#ÏÔÊ¾Êä³ö£¬ÔİÊ±ÒÔledµÆµÄĞÎÊ½
+#æ˜¾ç¤ºè¾“å‡ºï¼Œæš‚æ—¶ä»¥ledç¯çš„å½¢å¼
 case1: lw $t0, 0xC70($28)
        sw $t0, 0xC60($28)
        j exit
-#¼ÆËãa&b
+#è®¡ç®—a&b
 case2:       
-      #¸ß16bitsÊÇa, µÍ16bitsÊÇb
+      #é«˜16bitsæ˜¯a, ä½16bitsæ˜¯b
       lw $t0, 0xC70($28)
       srl $t1, $t0, 16
       sll $t2, $t0, 16
@@ -72,9 +72,9 @@ case2:
       and $t3, $t1, $t2
       sw $t3, 0xC60($28)
       j exit
-#¼ÆËãa|b     
+#è®¡ç®—a|b     
 case3: 
-      #¸ß16bitsÊÇa, µÍ16bitsÊÇb
+      #é«˜16bitsæ˜¯a, ä½16bitsæ˜¯b
       lw $t0, 0xC70($28)
       srl $t1, $t0, 16
       sll $t2, $t0, 16
@@ -82,9 +82,9 @@ case3:
       or $t3, $t1, $t2
       sw $t3, 0xC60($28)
       j exit
-#¼ÆËãa^b       
+#è®¡ç®—a^b       
 case4:
-      #¸ß16bitsÊÇa, µÍ16bitsÊÇb
+      #é«˜16bitsæ˜¯a, ä½16bitsæ˜¯b
       lw $t0, 0xC70($28)
       srl $t1, $t0, 16
       sll $t2, $t0, 16
@@ -92,9 +92,9 @@ case4:
       xor $t3, $t1, $t2
       sw $t3, 0xC60($28)
       j exit
-#¼ÆËãa<<b
+#è®¡ç®—a<<b
 case5:
-      #¸ß16bitsÊÇa, µÍ16bitsÊÇb
+      #é«˜16bitsæ˜¯a, ä½16bitsæ˜¯b
       lw $t0, 0xC70($28)
       srl $t1, $t0, 16
       sll $t2, $t0, 16
@@ -102,9 +102,9 @@ case5:
       sllv $t3, $t1, $t2
       sw $t3, 0xC60($28)
       j exit
-#¼ÆËãa>>b      
+#è®¡ç®—a>>b      
 case6:
-      #¸ß16bitsÊÇa, µÍ16bitsÊÇb
+      #é«˜16bitsæ˜¯a, ä½16bitsæ˜¯b
       lw $t0, 0xC70($28)
       srl $t1, $t0, 16
       sll $t2, $t0, 16
@@ -112,9 +112,9 @@ case6:
       srlv $t3, $t1, $t2
       sw $t3, 0xC60($28)
       j exit      
-#¼ÆËãËãÊıÓÒÒÆ
+#è®¡ç®—ç®—æ•°å³ç§»
 case7:
-      #¸ß16bitsÊÇa, µÍ16bitsÊÇb
+      #é«˜16bitsæ˜¯a, ä½16bitsæ˜¯b
       lw $t0, 0xC70($28)
       srl $t1, $t0, 16
       sll $t2, $t0, 16
