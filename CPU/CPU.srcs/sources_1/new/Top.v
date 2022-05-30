@@ -110,10 +110,10 @@ module Top(
     );
 
     //io - led
-    Leds io_led(clk, rst, ioWrite, write_data, led);
+    Leds io_led(clk_23, rst, ioWrite, write_data, led);
    
    wire[4:0] bt_out;
-   Buttons io_button(clk, rst, bt, bt_out);
+   Buttons io_button(clk_23, rst, bt, bt_out);
    
    always @* begin
         if(~rst && bt_out[3])
