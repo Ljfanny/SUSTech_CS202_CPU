@@ -4,9 +4,9 @@
 
 小组分工
 
-- 12011543 林洁芳：
-- 12011411 吴笑丰：
-- 12011906 汤奕飞：
+- 12011543 林洁芳：基础模块、部分IO模块、汇编测试
+- 12011411 吴笑丰：顶层模块、部分IO模块、Uart模块
+- 12011906 汤奕飞：汇编测试
 
 本小组 CPU 实现了
 
@@ -27,6 +27,13 @@
 
 - UART
 - 性能优化？
+
+uart 三种模式
+
+- 按下 rst 进入正常工作状态；
+- 按下复位 rst 进入复位模式；
+- 通信开始后，进入 uart 通信模式；
+- 通信结束后，进入复位模式，再次按下rst正常工作。
 
 ## 测试
 
@@ -54,22 +61,19 @@ start: lui   $1,0xFFFF
        addi   $s0, $zero, 0
        addi   $s2, $zero, 1
        addi   $s3, $zero, 2
-# 测试两个数相加 -> 涵盖button功能
-# 0xFFFFFC64 65 66 67       		
+       addi   $s4, $zero, 0x0001FFFF
 switled:
-	lw   $t0, 0xC64($28)
-	andi  $t0, $t0, 1
-	beq  $t0, $s2, new_number
+	lw $t0, 0xC70($28)
+	bne $t0, $s4, new_number
 	j switled
 new_number:									
-	lw $t1, 0xC70($28)
-	sw $zero, 0xC64($28)				
+	sw $s4, 0xC70($28)				
 	addi $s0, $s0, 1
 	beq $s0, $s3, cal
-	add $s1, $zero, $t1
+	add $s1, $zero, $t0
 	j switled
 cal:
-	add $t2, $t1, $s1
+	add $t2, $t0, $s1
 	sw  $t2,0xC62($28)
 	addi $s0, $zero, 1
 	j switled

@@ -21,16 +21,15 @@
 
 
 module Top(
-    input rst,
+    input fpga_rst,
     input clk,
     input[23:0] sw, //[23:21], [16:0]
     output[16:0] led,
-    input[4:0] bt 
+    input[4:0] bt,
+
     //uart programmer pinouts
-    //start uart communicate at high level
-    //input start_pg, //active high
-    //input rx, //receive data by uart
-    //output tx //send data by uart
+    input rx, //receive data by uart
+    output tx //send data by uart
     );
     
     wire clk_23, clk_10;
@@ -39,6 +38,44 @@ module Top(
         .clk_out1(clk_23),
         .clk_out2(clk_10)
     );
+
+    wire[4:0] bt_out;
+    Buttons io_button(clk_23, rst, bt, bt_out);
+
+    //start uart communicate at high level
+    wire start_pg; //active high
+    assign start_pg = bt_out[0]; //left
+
+    // UART Programmer Pinouts
+    wire upg_clk_o;
+    wire upg_wen_o; //Uart write out enable
+    wire upg_done_o; //Uart rx data have done
+    
+    //data to which memory unit of program_rom/dmemory32
+    wire [14:0] upg_adr_o;
+    //data to program_rom or dmemory32
+    wire [31:0] upg_dat_o;
+
+    wire spg_bufg;
+    BUFG U1(.I(start_pg), .O(spg_bufg)); // de-twitter
+    // Generate UART Programmer reset signal
+    reg upg_rst;
+    always @ (posedge fpga_clk) begin
+    if (spg_bufg) upg_rst = 0;
+    if (fpga_rst) upg_rst = 1;
+    end
+    //used for other modules which don't relate to UART
+    wire rst;
+    assign rst = fpga_rst | !upg_rst;
+
+
+    uart_bmpg_0 uart()
+
+    // write into memory_data
+    assign upg_wen_i_memory = upg_wen_o & upg_adr_o[14];
+    assign upg_wen_i_ifetch = upg_wen_o & !upg_adr_o[14];
+
+
 
     //ifetch
     wire branch, nbranch, jmp, jal, jr, zero;
@@ -88,7 +125,7 @@ module Top(
 
     //data memory
     wire[31:0] write_data; //write into mem, from MemOrIO processing reg_data2
-    wire[31:0] mem_data;
+    wire[31:0] mem_data; //output, read from memory
     dmemory32 data_memory(
         clk_23, memWrite, alu_result, write_data,
         mem_data
@@ -112,8 +149,13 @@ module Top(
     //io - led
     Leds io_led(clk_23, rst, ioWrite, write_data, led);
    
-   wire[4:0] bt_out;
-   Buttons io_button(clk_23, rst, bt, bt_out);
+   
+
+
+
+
+
+
    
    always @* begin
         if(~rst && bt_out[3])

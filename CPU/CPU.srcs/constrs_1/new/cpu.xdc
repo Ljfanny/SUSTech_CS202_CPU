@@ -112,6 +112,9 @@ set_property IOSTANDARD LVCMOS15 [get_ports {bt[2]}]
 set_property IOSTANDARD LVCMOS15 [get_ports {bt[1]}]
 set_property IOSTANDARD LVCMOS15 [get_ports {bt[0]}]
 
+set_property -dict {IOSTANDARD LVCMOS33 PACKAGE_PIN Y19} [get_ports rx]
+set_property -dict {IOSTANDARD LVCMOS33 PACKAGE_PIN V18} [get_ports tx]
+
 #set_property IOSTANDARD LVCMOS33 [get_ports {seg_en[0]}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {seg_en[1]}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {seg_en[2]}]
