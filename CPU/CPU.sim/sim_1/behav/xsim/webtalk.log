@@ -2,12 +2,12 @@
 # Webtalk v2017.4 (64-bit)
 # SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
 # IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
-# Start of session at: Mon May 30 17:20:16 2022
-# Process ID: 40964
-# Current directory: D:/LearningMaterial/sophomore_second/计组/SUSTech_CS202_CPU/CPU/CPU.sim/sim_1/behav/xsim
-# Command line: wbtcv.exe -mode batch -source D:/LearningMaterial/sophomore_second/计组/SUSTech_CS202_CPU/CPU/CPU.sim/sim_1/behav/xsim/xsim.dir/Executs32_behav/webtalk/xsim_webtalk.tcl -notrace
-# Log file: D:/LearningMaterial/sophomore_second/计组/SUSTech_CS202_CPU/CPU/CPU.sim/sim_1/behav/xsim/webtalk.log
-# Journal file: D:/LearningMaterial/sophomore_second/计组/SUSTech_CS202_CPU/CPU/CPU.sim/sim_1/behav/xsim\webtalk.jou
+# Start of session at: Sat May 14 19:41:17 2022
+# Process ID: 11136
+# Current directory: C:/Users/Ljfanny/CPU/CPU.sim/sim_1/behav/xsim
+# Command line: wbtcv.exe -mode batch -source C:/Users/Ljfanny/CPU/CPU.sim/sim_1/behav/xsim/xsim.dir/Executs32_behav/webtalk/xsim_webtalk.tcl -notrace
+# Log file: C:/Users/Ljfanny/CPU/CPU.sim/sim_1/behav/xsim/webtalk.log
+# Journal file: C:/Users/Ljfanny/CPU/CPU.sim/sim_1/behav/xsim\webtalk.jou
 #-----------------------------------------------------------
-source D:/LearningMaterial/sophomore_second/计组/SUSTech_CS202_CPU/CPU/CPU.sim/sim_1/behav/xsim/xsim.dir/Executs32_behav/webtalk/xsim_webtalk.tcl -notrace
-INFO: [Common 17-206] Exiting Webtalk at Mon May 30 17:20:17 2022...
+source C:/Users/Ljfanny/CPU/CPU.sim/sim_1/behav/xsim/xsim.dir/Executs32_behav/webtalk/xsim_webtalk.tcl -notrace
+INFO: [Common 17-206] Exiting Webtalk at Sat May 14 19:41:18 2022...
