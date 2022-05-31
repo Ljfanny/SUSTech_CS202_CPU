@@ -11,7 +11,7 @@ module ButtonMistaken(
     
     reg [1:0] record = 2'b00;
     
-    always @(negedge clk)
+    always @(posedge clk)
         record <= {record[0], out};
     assign but_out = record[0] & ~record[1];
 endmodule
