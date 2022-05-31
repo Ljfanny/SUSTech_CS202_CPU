@@ -21,7 +21,8 @@ module Control32(
     output MemRead,
     output IORead,
     output IOWrite,
-    output IOBt
+    output IOBt,
+    output IOSeg
     );
     wire R_format, Lw, Sw;
     assign R_format = (Opcode == 6'b000000)? 1'b1:1'b0;
@@ -49,6 +50,7 @@ module Control32(
      assign IORead = (Lw  == 1'b1 && (Alu_result[31:4] == 28'hFFFFFC7)) ? 1'b1 : 1'b0;
      assign IOWrite = (Sw  == 1'b1 && (Alu_result[31:4] == 28'hFFFFFC6)) ? 1'b1 : 1'b0;
      assign IOBt = (Lw  == 1'b1 && (Alu_result[31:4] == 28'hFFFFFC5)) ? 1'b1 : 1'b0;
+     assign IOSeg = (Sw  == 1'b1 && (Alu_result[31:4] == 28'hFFFFFC4)) ? 1'b1 : 1'b0;
      // Read operations require reading data from memory or I/O to write to the register
      assign MemorIOtoReg = IORead || MemRead || IOBt;
 endmodule

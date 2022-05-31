@@ -6,6 +6,7 @@ module MemOrIO(
     input ioRead,
     input ioWrite,
     input ioBt,
+    input ioSeg,
     input [31:0] addr_in,
 //    output [31:0] addr_out,
     input [31:0] m_rdata, //read from memory()
@@ -28,7 +29,7 @@ module MemOrIO(
 
     // sw, write to memory and io
     always @* begin
-        if((mWrite==1)||(ioWrite==1))
+        if((mWrite==1)||(ioWrite==1)||(ioSeg == 1))
         //wirte_data could go to either memory or IO. where is it from?
         //have something wrong.
             write_data = (mWrite == 1'b1) ? r_rdata : {{15{1'b0}}, r_rdata[16:0]};
@@ -42,5 +43,6 @@ module MemOrIO(
            else
                r_wdata = m_rdata;
     end
+    
     
 endmodule
