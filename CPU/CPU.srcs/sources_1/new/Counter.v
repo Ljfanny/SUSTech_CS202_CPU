@@ -12,13 +12,13 @@ wire key_clk;
 reg out;
 reg [1:0] record = 2'b00;
 
-always @ (negedge clk) begin
+always @ (posedge clk) begin
     record <= {record[0], button_in};
 end
 
 assign key_clk = record[0] ^ record[1];
 
-always @(negedge clk) begin
+always @(posedge clk) begin
     if(key_clk == 1) begin
         cnt <= 0;
     end
@@ -27,8 +27,8 @@ always @(negedge clk) begin
     end
 end
 
-always @(negedge clk) begin
-    if(cnt == 10_000) begin
+always @(posedge clk) begin
+    if(cnt == 23_000) begin
         out <= record[0];
     end
 end

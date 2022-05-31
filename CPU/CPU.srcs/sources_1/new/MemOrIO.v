@@ -5,12 +5,13 @@ module MemOrIO(
     input mWrite,
     input ioRead,
     input ioWrite,
+    input ioBt,
     input [31:0] addr_in,
 //    output [31:0] addr_out,
     input [31:0] m_rdata, //read from memory()
-    input [23:0] io_rdata, //read from io
+    input [28:0] io_rdata, //read from io
     input [31:0] r_rdata, //data read from register when sw
-    output [31:0] r_wdata, //data write into register when lw
+    output reg[31:0] r_wdata, //data write into register when lw
     output reg [31:0] write_data// write into memory or io
    // output LEDCtrl
    // output SwitchCtrl
@@ -19,7 +20,7 @@ module MemOrIO(
     // assign addr_out= addr_in;
     // The data wirte to register file may be from memory or io. 
     // While the data is from io, it should be the lower 16bit of r_wdata. 
-    assign r_wdata = (ioRead == 1'b1) ? {8'h00, io_rdata} : m_rdata;
+//    assign r_wdata = (ioRead == 1'b1) ? {8'h00, io_rdata} : m_rdata;
 
     // Chip select signal of Led and Switch are all active high;
  //   assign LEDCtrl= (ioWrite == 1'b1) ? 1'b1 : 1'b0;
@@ -33,6 +34,13 @@ module MemOrIO(
             write_data = (mWrite == 1'b1) ? r_rdata : {{15{1'b0}}, r_rdata[16:0]};
         else
             write_data = 32'hZZZZZZZZ;
-        end
+   end
+   
+   always @* begin
+           if((ioRead==1)||(ioBt==1))
+               r_wdata = (ioRead == 1'b1) ? {8'h00, io_rdata[23:0]} : {{27{1'b0}}, io_rdata[28:24]};
+           else
+               r_wdata = m_rdata;
+    end
     
 endmodule
