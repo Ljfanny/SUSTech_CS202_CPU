@@ -18,7 +18,7 @@ start: lui   $1,0xFFFF
 #get pos when load 1 word
 bt_second1:
 	lw $t2, 0xC50($28)
-	bne $t2, bt_second1
+	bne $t2, $zero, bt_second1
 bt_0:   
 	lw $t2, 0xC50($28)
 	beq $t2, $zero, bt_0	      
