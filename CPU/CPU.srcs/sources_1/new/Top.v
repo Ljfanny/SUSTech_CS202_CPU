@@ -5,7 +5,9 @@ module Top(
     input clk,
     input[23:0] sw, //[23:21], [16:0]
     output[23:0] led,
-    input[4:0] bt 
+    input[4:0] bt,
+    output reg[7:0] seg_out,
+    output reg[7:0] seg_en
     //uart programmer pinouts
     //start uart communicate at high level
     //input start_pg, //active high
@@ -38,13 +40,13 @@ module Top(
     wire regDst, aluSrc,regWrite, memWrite, i_format, sftmd, memoryIOtoReg;
     wire[1:0] aluOp;
     wire[31:0] alu_result; //address
-    wire memorIOtoReg, memRead, ioRead, ioWrite, ioBt;
+    wire memorIOtoReg, memRead, ioRead, ioWrite, ioBt, ioSeg;
     Control32 controller(
         instruction[31:26], instruction[5:0],
         jr, regDst, aluSrc, regWrite, memWrite,
         branch, nbranch, jmp, jal, i_format, sftmd,
         aluOp, alu_result,
-        memorIOtoReg, memRead, ioRead, ioWrite, ioBt
+        memorIOtoReg, memRead, ioRead, ioWrite, ioBt, ioSeg
     );
 
     //decoder
@@ -83,6 +85,7 @@ module Top(
 //    wire[23:0] io_read_data;
 //    wire[4:0] io_bt_data;
     wire[4:0] bt_out;
+    assign bt_out = bt;
 //    reg[4:0] bt_delay;
 //    IOread read_sw_module(sw, bt_out, io_read_data, io_bt_data);
 //    IOread read_sw_module(rst, ioRead, swCtrl, sw, io_read_data);
@@ -90,17 +93,20 @@ module Top(
     //memoryOrIO, read_data is the one into decoder
     //change reg_read_data2 to 1?
     MemOrIO memorio(
-        memRead, memWrite, ioRead, ioWrite, ioBt, alu_result,
+        memRead, memWrite, ioRead, ioWrite, ioBt, ioSeg, alu_result,
         mem_data, {bt_out, sw}, reg_read_data2,
         read_data, write_data
     );
 
     //io - led
+    wire[7:0] dis_seg_out, dis_seg_en;
     Leds io_led(clk_23, rst, ioWrite, write_data, led);
-    Buttons io_button(clk_23, rst, bt, bt_out);
+    Display display(clk, rst, ioSeg, write_data, dis_seg_out, dis_seg_en);
+   // Buttons io_button(clk_23, rst, bt, bt_out);
    
-//    always @(posedge clk_23) begin
-//         bt_delay <= bt_out;
-//    end
+    always @(posedge clk) begin
+         seg_out = dis_seg_out;
+         seg_en = dis_seg_en;
+    end
    
 endmodule
