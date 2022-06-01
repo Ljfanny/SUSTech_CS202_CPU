@@ -15,6 +15,8 @@ module programrom(
     );
 
     wire kickOff = upg_rst_i | (~upg_rst_i & upg_done_i );
+    // wire kickOff = 1; 
+
     prgrom instmem (
     .clka (kickOff ? rom_clk_i : upg_clk_i ),
     .wea (kickOff ? 1'b0 : upg_wen_i ),

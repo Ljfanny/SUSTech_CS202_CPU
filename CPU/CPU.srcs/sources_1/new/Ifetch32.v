@@ -28,7 +28,7 @@ module Ifetc32(
     assign branch_base_addr = PC + 4;
 
     assign rom_adr_o = PC[15:2];
-    assign instruction_o = instruction_i;
+    assign Instruction_o = instruction_i;
    
     // prgrom instmem(
     //     .clka(clock),

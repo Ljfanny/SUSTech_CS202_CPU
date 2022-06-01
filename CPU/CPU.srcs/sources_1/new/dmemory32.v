@@ -26,6 +26,7 @@ module dmemory32(
     /*  1 - normal
         0 - uart.  */
     wire kickOff = upg_rst_i | (~upg_rst_i & upg_done_i); 
+    // wire kickOff = 1;
 
     RAM ram (
     .clka (kickOff ? clk : upg_clk_i),
