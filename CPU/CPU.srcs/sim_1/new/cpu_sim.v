@@ -30,11 +30,13 @@ reg [4:0] bt = 5'b0;
 wire [7:0] seg_out;
 wire [7:0] seg_en;
 
+
 reg rx;
 wire tx;
 
 Top test(rst, clk, sw, led, bt, 
 seg_out, seg_en, rx, tx);
+
 
 initial begin
 #6000

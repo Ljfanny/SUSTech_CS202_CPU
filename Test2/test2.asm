@@ -120,16 +120,17 @@ positive:
       beq $t1, $s1, case2     #循环~
       j exit
 case3:      #copy case1
-      addi $t5, $t9, -1
-      addi $t3, $t3, 1
       addi $t4, $t4, 80
+      addi $t5, $t9, -1
+case3haha:
+      addi $t3, $t3, 1
       lw $t1, Array($t4)
       addi $t2, $t4, 40       #40一个space，10个整数
       sw $t1, Array($t2)
       addi $t4, $t4, 4
       sub $t1, $t3, $t9
       srl $t1, $t1, 31
-      beq $t1, $s1, case3
+      beq $t1, $s1, case3haha
       addi $t3, $zero, 0
 loopOut1:    #外循环，$t3计数
       addi $t3, $t3, 1

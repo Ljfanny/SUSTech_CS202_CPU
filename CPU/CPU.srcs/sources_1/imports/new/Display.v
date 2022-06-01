@@ -38,28 +38,20 @@ module Display(
     wire [7:0] seg4_out;
     SegShow seg4(seg4_num,seg4_out);
     
-     reg [4:0] seg5_num;
-     wire [7:0] seg5_out;
-     SegShow seg5(seg5_num,seg5_out);
-    
-//    reg[31:0] num = 32'h0000_0000;
-    reg[15:0] num = 16'h0000;
-    reg[2:0] cs = 3'b000; 
+    reg[31:0] num = 32'h0000_0000;
          
     always @* begin
         if (rst)
             {i0,i1,i2,i3,i4,i5,i6,i7} = {8{null}}; 
         else if (ioSeg) begin
-             num = {{16{1'b0}}, write_data[15:0]};
-             cs = write_data[18:16];
+             num = {16'h0000, write_data[15:0]};
              seg0_num <= num % 10;
              seg1_num <= (num % 100) / 10;
              seg2_num <= (num % 1000) / 100;
              seg3_num <= (num % 10000) / 1000;   
              seg4_num <= num / 10000;
-             seg5_num <= cs;
-             {i1, i3, i4, i5, i6, i7} = {seg5_out, seg4_out,seg3_out,seg2_out,seg1_out,seg0_out};
-             {i0,i2} = {2{null}};
+             {i3, i4, i5, i6, i7} = {seg4_out,seg3_out,seg2_out,seg1_out,seg0_out};
+             {i0,i1,i2} = {3{null}};
         end
         else
              {i0,i1,i2,i3,i4,i5,i6,i7} = {i0,i1,i2,i3,i4,i5,i6,i7};    
