@@ -53,11 +53,13 @@ module Top(
     wire rst;
     assign rst = fpga_rst | !upg_rst;
 
+    //fpga_rst : total reset, reset both program and uart, turn into uart
+    //spg_bufg: turn from uart to program, only reset program
 
     uart_bmpg_0 uart(
         .upg_clk_i(clk_10),
         .upg_rst_i(upg_rst),
-        .upt_rx_i(rx),
+        .upg_rx_i(rx),
         .upg_clk_o(upg_clk_o),
         .upg_wen_o(upg_wen_o),
         .upg_adr_o(upg_adr_o),
@@ -88,9 +90,9 @@ module Top(
     );
 
     programrom prr(
-        upg_clk_o, 
+        clk_23, 
         rom_adr_o, instruction_i,
-        upg_rst, clk_10, upg_wen_i_ifetch, upg_adr_o[13:0],
+        upg_rst, upg_clk_o, upg_wen_i_ifetch, upg_adr_o[13:0],
         upg_dat_o, upg_done_o
     );
 
@@ -151,12 +153,12 @@ module Top(
     //memoryOrIO, read_data is the one into decoder
     //change reg_read_data2 to 1?
 
-    wire bt_bufg;
-    BUFG U2(.I(bt[3]), .O(bt_bufg)); // de-twitter
+    // wire bt_bufg;
+    // BUFG U2(.I(bt[3]), .O(bt_bufg)); // de-twitter
 
     MemOrIO memorio(
         memRead, memWrite, ioRead, ioWrite, ioBt, ioSeg, alu_result,
-        mem_data, {bt_bufg, sw}, reg_read_data2,
+        mem_data, {bt_out, sw}, reg_read_data2,
         read_data, write_data
     );
 

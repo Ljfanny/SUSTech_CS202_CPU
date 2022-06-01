@@ -27,11 +27,11 @@ module dmemory32(
         0 - uart.  */
     wire kickOff = upg_rst_i | (~upg_rst_i & upg_done_i); 
 
-    Ram ram (
+    RAM ram (
     .clka (kickOff ? clk : upg_clk_i),
     .wea (kickOff ? memWrite : upg_wen_i),
     .addra (kickOff ? address[15:2] : upg_adr_i),
-    .dina (kickOff ? write_data : upg_dat_i),
+    .dina (kickOff ? writeData : upg_dat_i),
     .douta (readData)
     );
     
