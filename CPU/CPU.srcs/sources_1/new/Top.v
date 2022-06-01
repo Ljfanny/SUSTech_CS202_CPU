@@ -85,7 +85,12 @@ module Top(
 //    wire[23:0] io_read_data;
 //    wire[4:0] io_bt_data;
     wire[4:0] bt_out;
-    assign bt_out = bt;
+//    assign bt_out = bt;
+    BUFG U0(.I(bt[0]), .O(bt_out[0]));
+    BUFG U1(.I(bt[1]), .O(bt_out[1]));
+    BUFG U2(.I(bt[2]), .O(bt_out[2]));
+    BUFG U3(.I(bt[3]), .O(bt_out[3]));
+    BUFG U4(.I(bt[4]), .O(bt_out[4]));
 //    reg[4:0] bt_delay;
 //    IOread read_sw_module(sw, bt_out, io_read_data, io_bt_data);
 //    IOread read_sw_module(rst, ioRead, swCtrl, sw, io_read_data);

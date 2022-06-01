@@ -11,10 +11,10 @@ module Leds(
     //pos or neg?
     always @(posedge clk or posedge rst) begin
         if(rst)
-            led = {24{1'b0}};
+            led <= {24{1'b0}};
         else if (ioWrite)
-            led = {{15{1'b0}},write_data[16:0]};
+            led <= {{15{1'b0}},write_data[16:0]};
         else
-            led = led;
+            led <= led;
     end
 endmodule
