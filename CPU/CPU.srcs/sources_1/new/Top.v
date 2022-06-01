@@ -1,37 +1,19 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 2022/05/28 23:03:32
-// Design Name: 
-// Module Name: Top
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module Top(
     input fpga_rst,
     input clk,
     input[23:0] sw, //[23:21], [16:0]
-    output[16:0] led,
+    output[23:0] led,
     input[4:0] bt,
-
+    output reg[7:0] seg_out,
+    output reg[7:0] seg_en
     //uart programmer pinouts
     input rx, //receive data by uart
     output tx //send data by uart
     );
-    
+//    wire clk_23;
+//    assign clk_23 = clk;
     wire clk_23, clk_10;
     cpu_clk clock(
         .clk_in1(clk),
@@ -94,13 +76,13 @@ module Top(
     wire regDst, aluSrc,regWrite, memWrite, i_format, sftmd, memoryIOtoReg;
     wire[1:0] aluOp;
     wire[31:0] alu_result; //address
-    wire memorIOtoReg, memRead, ioRead, ioWrite;
+    wire memorIOtoReg, memRead, ioRead, ioWrite, ioBt, ioSeg;
     Control32 controller(
         instruction[31:26], instruction[5:0],
         jr, regDst, aluSrc, regWrite, memWrite,
         branch, nbranch, jmp, jal, i_format, sftmd,
-        aluOp, alu_result[31:10],
-        memorIOtoReg, memRead, ioRead, ioWrite
+        aluOp, alu_result,
+        memorIOtoReg, memRead, ioRead, ioWrite, ioBt, ioSeg
     );
 
     //decoder
@@ -132,36 +114,35 @@ module Top(
     );
 
     //wire ledCtrl, swCtrl;
-    reg swCtrl;
+    // reg swCtrl;
     //switch
 
     //ioread(convert sw into r_rdata)
-    wire[23:0] io_read_data;
-    IOread read_sw_module(rst, ioRead, swCtrl, sw, io_read_data);
+//    wire[23:0] io_read_data;
+//    wire[4:0] io_bt_data;
+    wire[4:0] bt_out;
+    assign bt_out = bt;
+//    reg[4:0] bt_delay;
+//    IOread read_sw_module(sw, bt_out, io_read_data, io_bt_data);
+//    IOread read_sw_module(rst, ioRead, swCtrl, sw, io_read_data);
 
     //memoryOrIO, read_data is the one into decoder
+    //change reg_read_data2 to 1?
     MemOrIO memorio(
-        memRead, memWrite, ioRead, ioWrite, alu_result,
-        mem_data, io_read_data, reg_read_data2,
+        memRead, memWrite, ioRead, ioWrite, ioBt, ioSeg, alu_result,
+        mem_data, {bt_out, sw}, reg_read_data2,
         read_data, write_data
     );
 
     //io - led
+    wire[7:0] dis_seg_out, dis_seg_en;
     Leds io_led(clk_23, rst, ioWrite, write_data, led);
+    Display display(clk, rst, ioSeg, write_data, dis_seg_out, dis_seg_en);
+   // Buttons io_button(clk_23, rst, bt, bt_out);
    
-   
-
-
-
-
-
-
-   
-   always @* begin
-        if(~rst && bt_out[3])
-            swCtrl <= 1'b1;
-        else
-            swCtrl <= 1'b0;   
-   end
+    always @(posedge clk) begin
+         seg_out = dis_seg_out;
+         seg_en = dis_seg_en;
+    end
    
 endmodule

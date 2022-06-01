@@ -7,7 +7,7 @@ module Counter(
     output button_out
 );
 
-reg [16:0] cnt;                
+reg [18:0] cnt;                
 wire key_clk;
 reg out;
 reg [1:0] record = 2'b00;
@@ -28,7 +28,7 @@ always @(posedge clk) begin
 end
 
 always @(posedge clk) begin
-    if(cnt == 10_0000) begin
+    if(cnt == 262) begin
         out <= record[0];
     end
 end
