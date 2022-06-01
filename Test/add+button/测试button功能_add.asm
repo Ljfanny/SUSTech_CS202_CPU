@@ -27,16 +27,11 @@ bt_1:
 	bne $t2, $zero, bt_1
 loop:
 	lw $t0, 0xC70($28)
-	# beq $t0, $s4, bt_1
-	# sw  $zero,0xC60($28)
-	# j switled									
-	# sw $s4, 0xC70($28)				
 	addi $s0, $s0, 1
 	sw $t0, 0xC60($28)
 	sw $t0, 0xC40($28)
 	beq $s0, $s3, cal
 	add $s1, $zero, $t0
-	# sw  $s1,0xC60($28)
 	j bt_0
 cal:
 	add $t1, $t0, $s1
