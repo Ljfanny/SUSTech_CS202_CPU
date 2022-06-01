@@ -29,7 +29,7 @@ module Top(
 
     //start uart communicate at high level
     wire start_pg; //active high
-    assign start_pg = bt_out[0]; //left
+    assign start_pg = bt_out[0]; //right
 
     // UART Programmer Pinouts
     wire upg_clk_o;
