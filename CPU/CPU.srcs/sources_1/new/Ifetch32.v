@@ -2,7 +2,8 @@
 
 // Maybe add PC and next_PC, to send out.
 module Ifetc32(
-    output [31:0] Instruction,
+    input[31:0] instruction_i,
+    output [31:0] Instruction_o,
     output [31:0] branch_base_addr,
     //from ALU.
     input [31:0] Addr_result,
@@ -16,19 +17,23 @@ module Ifetc32(
     input Zero,
     input clock,
     input reset,
-    output reg [31:0] link_addr
+    output reg [31:0] link_addr,
+    output[13:0] rom_adr_o
+
     );
     
     reg[31:0] PC;
     reg[31:0] next_PC;
     
     assign branch_base_addr = PC + 4;
+
+    assign rom_adr_o = PC[15:2];
    
-    prgrom instmem(
-        .clka(clock),
-        .addra(PC[15:2]),
-        .douta(Instruction)
-    );
+    // prgrom instmem(
+    //     .clka(clock),
+    //     .addra(PC[15:2]),
+    //     .douta(Instruction)
+    // );
     
     always@* begin
         if (Jr == 1'b1) begin
@@ -48,7 +53,7 @@ module Ifetc32(
         end
         else if (Jmp == 1'b1 || Jal == 1'b1) begin
             link_addr <= next_PC;
-            PC <= {PC[31:28], Instruction[25:0], 2'b00};
+            PC <= {PC[31:28], Instruction_o[25:0], 2'b00};
         end
         else begin
             PC <= next_PC;

@@ -10,7 +10,7 @@ module MemOrIO(
     input [31:0] addr_in,
 //    output [31:0] addr_out,
     input [31:0] m_rdata, //read from memory()
-    input [28:0] io_rdata, //read from io
+    input [24:0] io_rdata, //read from io
     input [31:0] r_rdata, //data read from register when sw
     output reg[31:0] r_wdata, //data write into register when lw
     output reg [31:0] write_data// write into memory or io
@@ -39,7 +39,7 @@ module MemOrIO(
    
    always @* begin
            if((ioRead==1)||(ioBt==1))
-               r_wdata = (ioRead == 1'b1) ? {8'h00, io_rdata[23:0]} : {{27{1'b0}}, io_rdata[28:24]};
+               r_wdata = (ioRead == 1'b1) ? {8'h00, io_rdata[23:0]} : {{31{1'b0}}, io_rdata[24]};
            else
                r_wdata = m_rdata;
     end
