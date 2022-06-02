@@ -7,8 +7,6 @@ start: lui   $1,0xFFFF
 	sw $t3, 0xC60($28)
 bt_0:   
 	lw $t2, 0xC50($28)
-	addi $t3, $zero, 1
-	sw $t3, 0xC60($28)
 	beq $t2, $zero, bt_0	      
 bt_1:
 	lw $t2, 0xC50($28)

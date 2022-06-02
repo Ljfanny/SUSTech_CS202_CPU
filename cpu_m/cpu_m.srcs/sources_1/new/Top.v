@@ -23,7 +23,7 @@ module Top(
 
     //Buttons io_button(clk_23, rst, bt, bt_out);
     wire[4:0] bt_out;
-   // assign bt_out = bt;
+    assign bt_out = bt;
 
     //-------------------------------------- UART ------------------------------------------
 
@@ -51,7 +51,8 @@ module Top(
     end
     //used for other modules which don't relate to UART
     wire rst;
-    assign rst = fpga_rst | !upg_rst;
+    // assign rst = fpga_rst | !upg_rst;
+    assign rst = fpga_rst;
 
     //fpga_rst : total reset, reset both program and uart, turn into uart
     //spg_bufg: turn from uart to program, only reset program
@@ -79,22 +80,23 @@ module Top(
     wire branch, nbranch, jmp, jal, jr, zero;
     wire[31:0] reg_read_data1, reg_read_data2;
     wire[31:0] addr_result;
-    wire[31:0] instruction, instruction_i, branch_base_addr, link_addr;
-    wire[13:0] rom_adr_o;
+    wire[31:0] instruction, branch_base_addr, link_addr;
+   // wire[13:0] rom_adr_o;
     Ifetc32 ifetch(
-        instruction_i, instruction, branch_base_addr,
+        instruction, branch_base_addr,
         addr_result, reg_read_data1,
         branch, nbranch, jmp, jal, jr, zero,
         clk_23, rst,
-        link_addr, rom_adr_o
-    );
-
-    programrom prr(
-        clk_23, 
-        rom_adr_o, instruction_i,
+        link_addr,
         upg_rst, upg_clk_o, upg_wen_i_ifetch, upg_adr_o[13:0],
         upg_dat_o, upg_done_o
     );
+    // programrom prr(
+    //     clk_23, 
+    //     rom_adr_o, instruction_i,
+    //     upg_rst, upg_clk_o, upg_wen_i_ifetch, upg_adr_o[13:0],
+    //     upg_dat_o, upg_done_o
+    // );
 
     
     //controller
@@ -148,11 +150,11 @@ module Top(
 
   //  wire[4:0] bt_out;
 //    assign bt_out = bt;
-    BUFG U0(.I(bt[0]), .O(bt_out[0]));
-    BUFG U1(.I(bt[1]), .O(bt_out[1]));
-    BUFG U2(.I(bt[2]), .O(bt_out[2]));
-    BUFG U3(.I(bt[3]), .O(bt_out[3]));
-    BUFG U4(.I(bt[4]), .O(bt_out[4]));
+    // BUFG U0(.I(bt[0]), .O(bt_out[0]));
+    // BUFG U1(.I(bt[1]), .O(bt_out[1]));
+    // BUFG U2(.I(bt[2]), .O(bt_out[2]));
+    // BUFG U3(.I(bt[3]), .O(bt_out[3]));
+    // BUFG U4(.I(bt[4]), .O(bt_out[4]));
 
 //    reg[4:0] bt_delay;
 //    IOread read_sw_module(sw, bt_out, io_read_data, io_bt_data);
@@ -173,10 +175,10 @@ module Top(
     //io - led
     wire[7:0] dis_seg_out, dis_seg_en;
     Leds io_led(clk_23, rst, ioWrite, write_data, led);
-    Display display(clk, rst, ioSeg, write_data, dis_seg_out, dis_seg_en);
+    Display display(clk_23, rst, ioSeg, write_data, dis_seg_out, dis_seg_en);
    // Buttons io_button(clk_23, rst, bt, bt_out);
    
-    always @(posedge clk) begin
+    always @(posedge clk_23) begin
          seg_out = dis_seg_out;
          seg_en = dis_seg_en;
     end

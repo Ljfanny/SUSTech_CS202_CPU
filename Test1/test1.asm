@@ -21,6 +21,8 @@ initialization:
       	addi $t3, $zero, 0
       	addi $t4, $zero, 0
       	addi $t5, $zero, 0
+      	addi $t9, $zero, 0
+      	addi $t8, $zero, 0
       	#addi $t6, $zero, 1
 # button!
 	#sw $t6, 0xC60($28)
@@ -39,7 +41,7 @@ bt_1_cs:
 	sll $1, $1, 11
 	srl $1, $1, 29
 	
-	sw $1, 0xC60($28)
+	#sw $1, 0xC60($28)
 	#addi $t6, $t6, 1
 	#sw $t6, 0xC60($28)
 	
@@ -58,7 +60,7 @@ case0:
         #addi $t6, $t6, 1
 	#sw $t6, 0xC60($28)
 bt_00:	lw $t0, 0xC50($28)
-	beq $t0, $zero, bt_00      
+	beq $t0, $zero, bt_00   
 bt_01:
 	lw $t0, 0xC50($28)
 	bne $t0, $zero, bt_01
@@ -67,6 +69,7 @@ bt_01:
 	lw $t0, 0xC70($28)
 	sll $t0, $t0, 16
 	srl $t0, $t0, 16
+	sw $t0, 0xC60($28)
 	addi $t1, $zero, 0
 	addi $t2, $t0, 0
 	#用于计数
@@ -91,20 +94,21 @@ cal_bits:
 	jdg_huiwen: 	
 		   beq $t3, $t0, is_huiwen
 		   lui $t5, 0x0000
-		   add $t4, $t0, $t5
-		   sw $t4, 0xC60($28)
+		   or $t4, $t0, $t5
+		   sw $t4, 0xC40($28)
 		   j exit
 	is_huiwen: 
-		   lui $t5, 0x0001
-		   add $t4, $t0, $t5
-		   sw $t4, 0xC60($28)
+		   lui $t5, 0x0008
+		   or $t4, $t0, $t5
+		   sw $t4, 0xC40($28)
 		   j exit
 #显示输出，暂时以led灯的形式
 case1: 
 	lui $t0, 0x0001
+	#add $t1, $t0, $t8
         sw $t0, 0xC40($28)	
 bt_10:	lw $t1, 0xC50($28)
-	beq $t1, $zero, bt_10	      
+	beq $t1, $zero, bt_10      
 bt_11:
 	lw $t1, 0xC50($28)
 	bne $t1, $zero, bt_11
@@ -116,7 +120,7 @@ bt_11:
 	add $t8, $zero, $t1
 	add $t2, $t8, $t0				
 	sw $t2, 0xC40($28)
-	j case1
+	j bt_10
 over:
 	add $t9, $zero, $t1
 	add $t2, $t9, $t0				
@@ -166,14 +170,21 @@ case6:
 case7:
 	lui $t0, 0x0007
         sw $t0, 0xC40($28)
-      	srav $t1, $t8, $t9
+        srl $t0, $t8, 15
+        beq $t0, $zero, pos
+        lui $t1, 0xFFFF
+        j next
+pos:    
+	lui $t1, 0x0000
+next:   or $t1, $t8, $t1   
+      	srav $t1, $t1, $t9
       	sw $t1, 0xC60($28)
       	#sw $t0, 0xC40($28)                  	
 exit: 
-      	addi $t0, $zero, 0
-      	addi $t1, $zero, 0
-      	addi $t2, $zero, 0
-      	addi $t3, $zero, 0
-      	addi $t4, $zero, 0
-      	addi $t5, $zero, 0
+      	#addi $t0, $zero, 0
+      	#addi $t1, $zero, 0
+      	#addi $t2, $zero, 0
+      	#addi $t3, $zero, 0
+      	#addi $t4, $zero, 0
+      	#addi $t5, $zero, 0
       	j bt_0_cs
