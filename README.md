@@ -1,6 +1,6 @@
 # SUSTech_CS202_CPU
 
-## 介绍
+## 简介
 
 小组分工
 
@@ -10,30 +10,267 @@
 
 本小组 CPU 实现了
 
-## 功能
+### 实现指令及功能
+
+- Minisys架构中的全部指令
+- 利用 UART 接口实现在不重新烧写FPGA芯片的前提下，加载不同的程序到CPU上执行
+
+### 使用的外部设备
+
+- 5个按钮
+- 7段数码管
+- 24个拨码开关
+- 24个 Led 灯
 
 ### 数据段
 
-- 0x00000000 - 0x00010000 ：RAM，`.data`
-- 0xFFFFFC50 - 0xFFFFFC53 ：button，用于判断读入 switch 输入
-- 0xFFFFFC60 - 0xFFFFFC63 ：led[16:0] only，只能用于 `sw`
-- 0xFFFFFC70 - 0xFFFFFC73 ：switch[23:0] onlu，只能用于 `lw`
+- `0x00000000` - `0x00010000` ：RAM，`.data`
+- `0xFFFFFC40` - `0xFFFFFC42`：七段数码管，其中 C40 - C41 用于存  16bits 整数，C42的前3bit用于存 0 - 7 8个整数
+- `0xFFFFFC50` - `0xFFFFFC53` ：button，用于判断是否输入
+- `0xFFFFFC60` - `0xFFFFFC63` ：led[23:0] ，只能用于 `sw`
+- `0xFFFFFC70` - `0xFFFFFC73` ：switch[23:0] ，只能用于 `lw`
 
-### 实现指令
+## 模块介绍
 
-- Minisys中的全部指令
-- 其他指令
+### IP Core
 
-### 外部设备
+- Clocking Wizard
+- Block Memory Generator * 2 
+- Uart_bmpg_0
 
-- 24个拨码开关
-- 17个 Led 灯
-- 3个按钮
+### Top Module
 
-### 其他实现
+顶层模块，实例化了后续功能模块、Clocking Wizard 和 Uart IP核。
 
-- UART
-- 性能优化？
+```verilog
+module Top(
+    input fpga_rst,
+    input clk,
+    input[23:0] sw, //[23:21], [16:0]
+    output[23:0] led,
+    input[4:0] bt,
+    output reg[7:0] seg_out,
+    output reg[7:0] seg_en,
+    //uart programmer pinouts
+    //start uart communicate at high level
+    //input start_pg, //active high
+    input rx, //receive data by uart
+    output tx //send data by uart
+);
+```
+
+
+
+### Instruction Fetech Module
+
+读取指令模块。略
+
+增加了 uart 相关引脚，并在模块中实例化了一个RAM模块，用于在正常模式和UART传输模式时进行访问读写的转换。
+
+```verilog
+module Ifetc32(
+    output [31:0] Instruction,
+    output [31:0] branch_base_addr,
+    input [31:0] Addr_result,
+    input [31:0] Read_data_1,
+    input Branch,
+    input nBranch,
+    input Jmp,
+    input Jal,
+    input Jr,
+    input Zero,
+    input clock,
+    input reset,
+    output reg [31:0] link_addr,
+
+    // UART Programmer Pinouts
+    input upg_rst_i, // UPG reset (Active High)
+    input upg_clk_i, // UPG clock (10MHz)
+    input upg_wen_i, // UPG write enable
+    input[13:0] upg_adr_i, // UPG write address
+    input[31:0] upg_dat_i, // UPG write data
+    input upg_done_i // 1 if program finished
+);
+    
+    //RAM
+    wire kickOff = upg_rst_i | (~upg_rst_i & upg_done_i );
+    prgrom instmem (
+    .clka (kickOff ? clock : upg_clk_i ),
+    .wea (kickOff ? 1'b0 : upg_wen_i ),
+    .addra (kickOff ? PC[15:2] : upg_adr_i ),
+    .dina (kickOff ? 32'h00000000 : upg_dat_i ),
+    .douta (Instruction)
+    );
+```
+
+
+
+### Controller Module
+
+介绍
+
+```verilog
+module Control32(
+    input [5:0] Opcode,
+    input [5:0] Function_opcode,
+    output Jr,
+    output RegDST,
+    output ALUSrc,
+    output RegWrite,
+    output MemWrite,
+    output Branch,
+    output nBranch,
+    output Jmp,
+    output Jal,
+    output I_format,
+    output Sftmd,
+    output [1:0] ALUOp,
+    input[31:0] Alu_result,
+    output MemorIOtoReg,
+    output MemRead,
+    output IORead,
+    output IOWrite,
+    output IOBt,
+    output IOSeg
+);
+```
+
+
+
+### Decoder Module
+
+```verilog
+module Decode32(
+    output [31:0] read_data_1,
+    output [31:0] read_data_2, 
+    input [31:0] Instruction,
+    input [31:0] read_data, //from mem or io
+    input [31:0] ALU_result,
+    input Jal,
+    input RegWrite,
+    input MemtoReg, // MemOrIOtoReg
+    input RegDst,
+    output [31:0] Sign_extend,
+    input clock,
+    input reset,
+    input [31:0] opcplus4
+);
+```
+
+
+
+### ALU Module
+
+```verilog
+module Executs32(
+    input [31:0] Read_data_1,
+    input [31:0] Read_data_2,
+    input [31:0] Sign_extend,
+    input [5:0] Function_opcode,
+    input [5:0] Exe_opcode,
+    input [1:0] ALUOp,
+    input [4:0] Shamt,
+    input Sftmd,
+    input ALUSrc,
+    input I_format,
+    input Jr,
+    output Zero, 
+    output reg [31:0] ALU_Result,  //the ALU calculation result
+    output[31:0] Addr_Result,
+    input [31:0] PC_plus_4
+);
+```
+
+
+
+### Data Memory
+
+```verilog
+module dmemory32(
+    //memWrite comes from controller, 1'b1 -> write data-memory.
+    input clock,
+    input memWrite,
+    input [31:0] address,
+    input [31:0] writeData,
+    output [31:0] readData,
+
+    // UART Programmer Pinouts
+    input upg_rst_i, // UPG reset (Active High)
+    input upg_clk_i, // UPG ram_clk_i (10MHz)
+    input upg_wen_i, // UPG write enable
+    input [13:0] upg_adr_i, // UPG write address  upg_adr_o[14:1], ifetch [13:0]
+    input [31:0] upg_dat_i, // UPG write data
+    input upg_done_i // 1 if programming is finished
+);
+    
+    //RAM
+    RAM ram (
+    .clka (kickOff ? clk : upg_clk_i),
+    .wea (kickOff ? memWrite : upg_wen_i),
+    .addra (kickOff ? address[15:2] : upg_adr_i),
+    .dina (kickOff ? writeData : upg_dat_i),
+    .douta (readData)
+    );
+```
+
+
+
+### MemoryOrIO Module
+
+用于衔接内存、IO
+
+```verilog
+module MemOrIO(
+    input mRead,
+    input mWrite,
+    input ioRead,
+    input ioWrite,
+    input ioBt,
+    input ioSeg,
+    input [31:0] addr_in,
+    input [31:0] m_rdata, //read from memory()
+    input [28:0] io_rdata, //read from io
+    input [31:0] r_rdata, //data read from register when sw
+    output reg[31:0] r_wdata, //data write into register when lw
+    output reg [31:0] write_data// write into memory or io
+);
+```
+
+
+
+### 显示模块
+
+```verilog
+// LED灯管显示
+module Leds(
+    input clk,
+    input rst,
+    input ioWrite,
+    input[31:0] write_data,
+    output reg[23:0] led
+);
+
+// 七段数码管显示
+module Display(
+    input clk, rst,
+    input ioSeg,
+    input[31:0] write_data,
+    output [7:0] seg_out,
+    output [7:0] seg_en
+);
+```
+
+
+
+### 
+
+
+
+### 其它  
+
+BUFG 原语门
+
+
 
 ## 测试
 
@@ -84,7 +321,13 @@ cal:
 
 ### 场景1
 
+
+
 ### 场景2
+
+
+
+
 
 ## 遇到的问题
 
