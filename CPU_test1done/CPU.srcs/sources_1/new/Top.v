@@ -25,7 +25,8 @@ module Top(
 
     wire[4:0] bt_out;
 //    assign bt_out = bt;
-    BUFG U0(.I(bt[0]), .O(bt_out[0]));
+    // BUFG U0(.I(bt[0]), .O(bt_out[0]));
+    assign bt_out[0] = 0;
     BUFG U1(.I(bt[1]), .O(bt_out[1]));
     BUFG U2(.I(bt[2]), .O(bt_out[2]));
     BUFG U3(.I(bt[3]), .O(bt_out[3]));
@@ -36,7 +37,7 @@ module Top(
 
     //start uart communicate at high level
     wire start_pg; //active high
-    assign start_pg = bt_out[0]; //right
+    assign start_pg = bt[0]; //right
 
     // UART Programmer Pinouts
     wire upg_clk_o;
