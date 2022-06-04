@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="35" Path="D:/1git/SUSTech_CS202_CPU/CPU/CPU.xpr">
+<Project Version="7" Minor="35" Path="D:/1git/CPU_test1done/CPU.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="fd4db87ba90745bdaf721a766a3fd61e"/>
@@ -18,11 +18,9 @@
     <Option Name="CompiledLibDirRiviera" Val="$PCACHEDIR/compile_simlib/riviera"/>
     <Option Name="CompiledLibDirActivehdl" Val="$PCACHEDIR/compile_simlib/activehdl"/>
     <Option Name="BoardPart" Val=""/>
-    <Option Name="SourceMgmtMode" Val="DisplayOnly"/>
     <Option Name="ActiveSimSet" Val="sim_1"/>
     <Option Name="DefaultLib" Val="xil_defaultlib"/>
     <Option Name="ProjectType" Val="Default"/>
-    <Option Name="IPRepoPath" Val="$PPRDIR/../SEU_CSE_507_user_uart_bmpg_1.3"/>
     <Option Name="IPOutputRepo" Val="$PCACHEDIR/ip"/>
     <Option Name="IPCachePermission" Val="read"/>
     <Option Name="IPCachePermission" Val="write"/>
@@ -33,20 +31,20 @@
     <Option Name="EnableBDX" Val="FALSE"/>
     <Option Name="DSAVendor" Val="xilinx"/>
     <Option Name="DSANumComputeUnits" Val="60"/>
-    <Option Name="WTXSimLaunchSim" Val="15"/>
+    <Option Name="WTXSimLaunchSim" Val="29"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
     <Option Name="WTVcsLaunchSim" Val="0"/>
     <Option Name="WTRivieraLaunchSim" Val="0"/>
     <Option Name="WTActivehdlLaunchSim" Val="0"/>
-    <Option Name="WTXSimExportSim" Val="35"/>
-    <Option Name="WTModelSimExportSim" Val="35"/>
-    <Option Name="WTQuestaExportSim" Val="35"/>
-    <Option Name="WTIesExportSim" Val="35"/>
-    <Option Name="WTVcsExportSim" Val="35"/>
-    <Option Name="WTRivieraExportSim" Val="35"/>
-    <Option Name="WTActivehdlExportSim" Val="35"/>
+    <Option Name="WTXSimExportSim" Val="36"/>
+    <Option Name="WTModelSimExportSim" Val="36"/>
+    <Option Name="WTQuestaExportSim" Val="36"/>
+    <Option Name="WTIesExportSim" Val="36"/>
+    <Option Name="WTVcsExportSim" Val="36"/>
+    <Option Name="WTRivieraExportSim" Val="36"/>
+    <Option Name="WTActivehdlExportSim" Val="36"/>
     <Option Name="GenerateIPUpgradeLog" Val="TRUE"/>
     <Option Name="XSimRadix" Val="hex"/>
     <Option Name="XSimTimeUnit" Val="ns"/>
@@ -57,13 +55,6 @@
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
       <Filter Type="Srcs"/>
-      <File Path="$PSRCDIR/sources_1/ip/RAM/RAM.xci">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PSRCDIR/sources_1/new/Control32.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -150,6 +141,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/ButtonMistaken.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -157,6 +149,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/Buttons.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -164,6 +157,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/Counter.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -171,6 +165,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/DivideClk.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -178,6 +173,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/GenBound.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -185,18 +181,31 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/IOread.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/ip/RAM/dmem32.coe">
+      <File Path="$PSRCDIR/sources_1/ip/RAM/add_dmem32.coe">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/ip/prgrom/prgmip32.coe">
+      <File Path="$PSRCDIR/sources_1/ip/RAM/lwsw_dmem32.coe">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/ip/RAM/ts1_dmem32.coe">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/ip/prgrom/ts1_prgmip32.coe">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -222,8 +231,16 @@
     </FileSet>
     <FileSet Name="sim_1" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/sim_1">
       <Filter Type="Srcs"/>
-      <File Path="$PSRCDIR/sim_1/new/cpu_sim.v">
+      <File Path="$PSRCDIR/sim_1/new/cpu_sim_2.v">
         <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sim_1/new/cpu_sim_1.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -231,12 +248,12 @@
       </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="cpu_sim"/>
+        <Option Name="TopModule" Val="cpu_sim_2"/>
         <Option Name="TopLib" Val="xil_defaultlib"/>
         <Option Name="TransportPathDelay" Val="0"/>
         <Option Name="TransportIntDelay" Val="0"/>
         <Option Name="SrcSet" Val="sources_1"/>
-        <Option Name="xsim.simulate.runtime" Val="10000ns"/>
+        <Option Name="xsim.simulate.runtime" Val="100000ns"/>
       </Config>
     </FileSet>
     <FileSet Name="cpu_clk" Type="BlockSrcs" RelSrcDir="$PSRCDIR/cpu_clk">
@@ -252,8 +269,8 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="uart_bmpg_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/uart_bmpg_0">
-      <File Path="$PSRCDIR/sources_1/ip/uart_bmpg_0/uart_bmpg_0.xci">
+    <FileSet Name="RAM" Type="BlockSrcs" RelSrcDir="$PSRCDIR/RAM">
+      <File Path="$PSRCDIR/sources_1/ip/RAM/RAM.xci">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -261,7 +278,7 @@
         </FileInfo>
       </File>
       <Config>
-        <Option Name="TopModule" Val="uart_bmpg_0"/>
+        <Option Name="TopModule" Val="RAM"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -316,7 +333,7 @@
       <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2017"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="uart_bmpg_0_synth_1" Type="Ft3:Synth" SrcSet="uart_bmpg_0" Part="xc7a100tfgg484-1" ConstrsSet="uart_bmpg_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/uart_bmpg_0_synth_1" IncludeInArchive="true">
+    <Run Id="RAM_synth_1" Type="Ft3:Synth" SrcSet="RAM" Part="xc7a100tfgg484-1" ConstrsSet="RAM" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/RAM_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2017"/>
         <Step Id="synth_design"/>
@@ -367,7 +384,7 @@
       <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2017"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="uart_bmpg_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tfgg484-1" ConstrsSet="uart_bmpg_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="uart_bmpg_0_synth_1" IncludeInArchive="false">
+    <Run Id="RAM_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tfgg484-1" ConstrsSet="RAM" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="RAM_synth_1" IncludeInArchive="false">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2017"/>
         <Step Id="init_design"/>

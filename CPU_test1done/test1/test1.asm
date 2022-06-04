@@ -1,12 +1,12 @@
 .data 0x0000				      		
       buf: .word 0x0000
 .text 0x0000
-# ³õÊ¼»¯				
+# åˆå§‹åŒ–				
 initialization: 
 	lui $1, 0xFFFF			
         ori $28, $1, 0xF000
-        #a0, a1´æa, b
-        # ³õÊ¼»¯³É0-7
+        #a0, a1å­˜a, b
+        # åˆå§‹åŒ–æˆ0-7
         ori $s0, $zero, 0
         ori $s1, $zero, 1 
         ori $s2, $zero, 2 
@@ -28,7 +28,7 @@ initialization:
 	#sw $t6, 0xC60($28)
 bt_0_cs:   
 	lw $t0, 0xC50($28)
-	beq $t0, $zero, bt_0_cs	      
+	beq $t0, $zero, bt_0_cs    
 bt_1_cs:
 	lw $t0, 0xC50($28)
 	bne $t0, $zero, bt_1_cs	
@@ -37,10 +37,11 @@ bt_1_cs:
 	#sw $t6, 0xC60($28)	
 								
 	lw $1, 0xC70($28)
-	# sw20 sw19 sw18
-	sll $1, $1, 11
+	# sw23 sw22 sw21
+	sll $1, $1, 8
 	srl $1, $1, 29
-	
+	sll $2, $1, 21
+        sw $2, 0xC40($28)
 	#sw $1, 0xC60($28)
 	#addi $t6, $t6, 1
 	#sw $t6, 0xC60($28)
@@ -53,7 +54,7 @@ bt_1_cs:
 	beq $1, $s5, case5
 	beq $1, $s6, case6
 	beq $1, $s7, case7
-#ÅĞ¶ÏÊÇ·ñ»ØÎÄ²¢ÏÔÊ¾Êı¾İ	
+#åˆ¤æ–­æ˜¯å¦å›æ–‡å¹¶æ˜¾ç¤ºæ•°æ®	
 case0:
 	lui $t0, 0x0000
         sw $t0, 0xC40($28)
@@ -72,18 +73,18 @@ bt_01:
 	sw $t0, 0xC60($28)
 	addi $t1, $zero, 0
 	addi $t2, $t0, 0
-	#ÓÃÓÚ¼ÆÊı
+	#ç”¨äºè®¡æ•°
 cal_bits:
 	srl $t2, $t2, 1
 	addi $t1, $t1, 1
 	bne $t2, $zero, cal_bits
-	#Î»Êı $t1
-	#t2 Î»ÒÆ
+	#ä½æ•° $t1
+	#t2 ä½ç§»
 	addi $t2, $t0, 0
-	#·´×ªºóµÄ½á¹û
+	#åè½¬åçš„ç»“æœ
 	addi $t3, $zero, 0
 	for_case0: 
-		   #·Å½á¹û
+		   #æ”¾ç»“æœ
 		   and $t4, $t2, $s1
 		   add $t3, $t3, $t4
 		   addi $t1, $t1, -1
@@ -95,16 +96,17 @@ cal_bits:
 		   beq $t3, $t0, is_huiwen
 		   lui $t5, 0x0000
 		   or $t4, $t0, $t5
-		   sw $t4, 0xC40($28)
+		   sw $t4, 0xC60($28)
 		   j exit
 	is_huiwen: 
-		   lui $t5, 0x0008
+		   lui $t5, 0x0001
 		   or $t4, $t0, $t5
-		   sw $t4, 0xC40($28)
+		   sw $t4, 0xC60($28)
 		   j exit
-#ÏÔÊ¾Êä³ö£¬ÔİÊ±ÒÔledµÆµÄĞÎÊ½
+#æ˜¾ç¤ºè¾“å‡ºï¼Œæš‚æ—¶ä»¥ledç¯çš„å½¢å¼
 case1: 
 	lui $t0, 0x0001
+	addi $t3, $zero, 0
 	#add $t1, $t0, $t8
         sw $t0, 0xC40($28)	
 bt_10:	lw $t1, 0xC50($28)
@@ -118,55 +120,73 @@ bt_11:
 	addi $t3, $t3, 1
 	beq $t3, $s2, over
 	add $t8, $zero, $t1
-	add $t2, $t8, $t0				
+	or $t2, $t8, $t0				
 	sw $t2, 0xC40($28)
+	lui $t4, 0x0020
+	or $t4, $t4, $t8
+	sw $t4, 0xC60($28)
 	j bt_10
 over:
 	add $t9, $zero, $t1
-	add $t2, $t9, $t0				
+	or $t2, $t9, $t0				
 	sw $t2, 0xC40($28)
+	lui $t4, 0x0020
+	or $t4, $t4, $t9
+        sw $t4, 0xC60($28)
         j exit
-#¼ÆËãa&b
+#è®¡ç®—a&b
 case2:
 	lui $t0, 0x0002
         sw $t0, 0xC40($28)      
       	and $t1, $t8, $t9
-      	sw $t1, 0xC60($28)
+      	lui $t4, 0x0040
+	or $t4, $t4, $t1
+      	sw $t4, 0xC60($28)
       	#sw $t0, 0xC40($28)
       	j exit
-#¼ÆËãa|b     
+#è®¡ç®—a|b     
 case3: 
 	lui $t0, 0x0003
         sw $t0, 0xC40($28)
       	or $t1, $t8, $t9
-      	sw $t1, 0xC60($28)
+      	lui $t4, 0x0060
+	or $t4, $t4, $t1
+      	sw $t4, 0xC60($28)
       	#sw $t0, 0xC40($28)
       	j exit
-#¼ÆËãa^b       
+#è®¡ç®—a^b       
 case4:
 	lui $t0, 0x0004
         sw $t0, 0xC40($28)
       	xor $t1, $t8, $t9
-      	sw $t1, 0xC60($28)
+      	lui $t4, 0x0080
+	or $t4, $t4, $t1
+      	sw $t4, 0xC60($28)
       	#sw $t0, 0xC40($28)
       	j exit
-#¼ÆËãa<<b
+#è®¡ç®—a<<b
 case5:
 	lui $t0, 0x0005
         sw $t0, 0xC40($28)
       	sllv $t1, $t8, $t9
-      	sw $t1, 0xC60($28)
+      	sll $t1, $t1, 16
+      	srl $t1, $t1, 16
+      	lui $t4, 0x00A0
+	or $t4, $t4, $t1
+      	sw $t4, 0xC60($28)
       	#sw $t0, 0xC40($28)
       	j exit
-#¼ÆËãa>>b      
+#è®¡ç®—a>>b      
 case6:
 	lui $t0, 0x0006
         sw $t0, 0xC40($28)
       	srlv $t1, $t8, $t9
-      	sw $t1, 0xC60($28)
+      	lui $t4, 0x00C0
+	or $t4, $t4, $t1
+      	sw $t4, 0xC60($28)
       	#sw $t0, 0xC40($28)
       	j exit      
-#¼ÆËãËãÊıÓÒÒÆ
+#è®¡ç®—ç®—æ•°å³ç§»
 case7:
 	lui $t0, 0x0007
         sw $t0, 0xC40($28)
@@ -178,7 +198,11 @@ pos:
 	lui $t1, 0x0000
 next:   or $t1, $t8, $t1   
       	srav $t1, $t1, $t9
-      	sw $t1, 0xC60($28)
+      	sll $t1, $t1, 16
+      	srl $t1, $t1, 16
+      	lui $t4, 0x00E0
+	or $t4, $t4, $t1
+      	sw $t4, 0xC60($28)
       	#sw $t0, 0xC40($28)                  	
 exit: 
       	#addi $t0, $zero, 0

@@ -91,6 +91,8 @@ module Top(
     BUFG U2(.I(bt[2]), .O(bt_out[2]));
     BUFG U3(.I(bt[3]), .O(bt_out[3]));
     BUFG U4(.I(bt[4]), .O(bt_out[4]));
+     
+    
 //    reg[4:0] bt_delay;
 //    IOread read_sw_module(sw, bt_out, io_read_data, io_bt_data);
 //    IOread read_sw_module(rst, ioRead, swCtrl, sw, io_read_data);
@@ -105,9 +107,9 @@ module Top(
 
     //io - led
     wire[7:0] dis_seg_out, dis_seg_en;
-    Leds io_led(clk, rst, ioWrite, write_data, led);
+    Leds io_led(clk_23, rst, ioWrite, write_data, led);
     Display display(clk, rst, ioSeg, write_data, dis_seg_out, dis_seg_en);
-   // Buttons io_button(clk_23, rst, bt, bt_out);
+//    Buttons io_button(clk, rst, bt, bt_out);
    
     always @(posedge clk) begin
          seg_out = dis_seg_out;
