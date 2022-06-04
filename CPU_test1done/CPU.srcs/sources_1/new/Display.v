@@ -45,7 +45,11 @@ module Display(
     reg[31:0] num = 32'h0000_0000;
     reg[2:0] cse = 3'b000;
          
-    always @* begin
+    initial begin
+        {i0,i1,i2,i3,i4,i5,i6,i7} = {8{null}}; 
+    end
+
+    always @(posedge clk, posedge rst) begin
         if (rst)
             {i0,i1,i2,i3,i4,i5,i6,i7} = {8{null}}; 
         else if (ioSeg) begin
