@@ -16,19 +16,39 @@ module Ifetc32(
     input Zero,
     input clock,
     input reset,
-    output reg [31:0] link_addr
+    output reg [31:0] link_addr,
+
+    // UART Programmer Pinouts
+    input upg_rst_i, // UPG reset (Active High)
+    input upg_clk_i, // UPG clock (10MHz)
+    input upg_wen_i, // UPG write enable
+    input[13:0] upg_adr_i, // UPG write address
+    input[31:0] upg_dat_i, // UPG write data
+    input upg_done_i // 1 if program finished
     );
     
     reg[31:0] PC;
     reg[31:0] next_PC;
     
     assign branch_base_addr = PC + 4;
+
+    wire kickOff = upg_rst_i | (~upg_rst_i & upg_done_i );
+    // wire kickOff = 1; 
    
-    prgrom instmem(
-        .clka(clock),
-        .addra(PC[15:2]),
-        .douta(Instruction)
+    // prgrom instmem(
+    //     .clka(clock),
+    //     .addra(PC[15:2]),
+    //     .douta(Instruction)
+    // );
+
+    prgrom instmem (
+    .clka (kickOff ? clock : upg_clk_i ),
+    .wea (kickOff ? 1'b0 : upg_wen_i ),
+    .addra (kickOff ? PC[15:2] : upg_adr_i ),
+    .dina (kickOff ? 32'h00000000 : upg_dat_i ),
+    .douta (Instruction)
     );
+
     
     always@* begin
         if (Jr == 1'b1) begin

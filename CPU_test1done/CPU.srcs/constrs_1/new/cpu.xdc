@@ -98,11 +98,11 @@ set_property IOSTANDARD LVCMOS33 [get_ports {sw[0]}]
 set_property PACKAGE_PIN Y18 [get_ports {clk}]
 set_property IOSTANDARD LVCMOS33 [get_ports {clk}]
 
-set_property PACKAGE_PIN P20 [get_ports {rst}]
-set_property IOSTANDARD LVCMOS33 [get_ports {rst}]
+set_property PACKAGE_PIN P20 [get_ports {fpga_rst}]
+set_property IOSTANDARD LVCMOS33 [get_ports {fpga_rst}]
 
-#set_property -dict {IOSTANDARD LVCMOS33 PACKAGE_PIN Y19} [get_ports rx]
-#set_property -dict {IOSTANDARD LVCMOS33 PACKAGE_PIN V18} [get_ports tx]
+set_property -dict {IOSTANDARD LVCMOS33 PACKAGE_PIN Y19} [get_ports rx]
+set_property -dict {IOSTANDARD LVCMOS33 PACKAGE_PIN V18} [get_ports tx]
 
 set_property PACKAGE_PIN P2 [get_ports {bt[4]}]
 set_property PACKAGE_PIN P4 [get_ports {bt[3]}]
