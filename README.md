@@ -25,6 +25,14 @@ The project implemented a single-cycle CPU based on the Minisys instruction set 
 
 ### Data Segment
 
+| Address                     | Stroage                                                  |
+| --------------------------- | -------------------------------------------------------- |
+| `0x00000000` - `0x00010000` | instructions in `.text` label and data in `.data` label |
+| `0xFFFFFC40` - `0xFFFFFC42` | 7-segment digital tubes’ data                            |
+| `0xFFFFFC50` - `0xFFFFFC53` | data of `button[4:0]`                                    |
+| `0xFFFFFC60` - `0xFFFFFC63` | data of `LED[23:0]`                                      |
+| `0xFFFFFC70` - `0xFFFFFC73` | data of `switch[23:0]`                                   |
+
 - `0x00000000` - `0x00010000` ：RAM，stores instructions in `.text` label and data in `.data` label.
 - `0xFFFFFC40` - `0xFFFFFC42`：Stores 7-segment digital tubes’ data.  `C40 - C41` is used to store 16 bits integer，the first 3 bits of `C42` is used to store 8 integer, showing the test statements.
 - `0xFFFFFC50` - `0xFFFFFC53` ：Stores button data to determine whether the user has entered through IO.

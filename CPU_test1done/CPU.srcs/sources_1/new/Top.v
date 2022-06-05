@@ -147,8 +147,6 @@ module Top(
     //ioread(convert sw into r_rdata)
 //    wire[23:0] io_read_data;
 //    wire[4:0] io_bt_data;
-
-     
     
 //    reg[4:0] bt_delay;
 //    IOread read_sw_module(sw, bt_out, io_read_data, io_bt_data);
