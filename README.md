@@ -2,17 +2,17 @@
 
 ## Introduction
 
-本小组 CPU 实现了
+The project implemented a single-cycle CPU based on the Minisys instruction set architecture, and achieved an elegant user interaction experience through device pins such as switches, led lights, seven-segment digital display tubes, and uart interfaces on the FPGA development board.
 
 ### Grouping
 
-- 12011543 林洁芳：
-- 12011411 吴笑丰：
-- 12011906 汤奕飞：
+- 12011543 林洁芳：Basic function modules, Test 1,  part of Test 2
+- 12011411 吴笑丰：Top module, IO module, Uart module
+- 12011906 汤奕飞：Design and debugging of Test 2
 
 ### Implementation
 
-- Implemented all the instructions in Minisys Instruction Set Architecture
+- Implemented all the instructions in Minisys Instruction Set Architecture.
 - Implemented UART interface to allow loading different programs (`.coe` files) to the CPU for execution without re-programming the bitstream file to the FPGA chip.
 - Implemented the use of multiple IO devices to enable users to interact with the CPU.
 
@@ -23,13 +23,13 @@
 - 24 $*$ switches
 - 24 $*$ LEDs
 
-### Data Segement
+### Data Segment
 
 - `0x00000000` - `0x00010000` ：RAM，stores instructions in `.text` label and data in `.data` label.
-- `0xFFFFFC40` - `0xFFFFFC42`：Stores 7-segment digital tubes’ data.  C40 - C41 is used to store 16 bits integer，the first 3 bits of C42 is used to store 8 integer, showing the test statements.
+- `0xFFFFFC40` - `0xFFFFFC42`：Stores 7-segment digital tubes’ data.  `C40 - C41` is used to store 16 bits integer，the first 3 bits of `C42` is used to store 8 integer, showing the test statements.
 - `0xFFFFFC50` - `0xFFFFFC53` ：Stores button data to determine whether the user has entered through IO.
-- `0xFFFFFC60` - `0xFFFFFC63` ：Stores data of LED[23:0].
-- `0xFFFFFC70` - `0xFFFFFC73` ：Stores data of switch[23:0].
+- `0xFFFFFC60` - `0xFFFFFC63` ：Stores data of `LED[23:0]`.
+- `0xFFFFFC70` - `0xFFFFFC73` ：Stores data of `switch[23:0]`.
 
 ## Modules Info
 
@@ -41,20 +41,18 @@
 
 ### Top Module
 
-顶层模块，实例化了后续功能模块、Clocking Wizard 和 Uart IP核。
+The top module of the whole CPU, instantiated and connected function modules and necesseary IP cores including Clocking Wizardc, Uart_bpmg_0, etc。
 
 ```verilog
 module Top(
     input fpga_rst,
     input clk,
-    input[23:0] sw, //[23:21], [16:0]
+    input[23:0] sw,
     output[23:0] led,
     input[4:0] bt,
     output reg[7:0] seg_out,
     output reg[7:0] seg_en,
     //uart programmer pinouts
-    //start uart communicate at high level
-    //input start_pg, //active high
     input rx, //receive data by uart
     output tx //send data by uart
 );
@@ -64,9 +62,10 @@ module Top(
 
 ### Instruction Fetech Module
 
-读取指令模块。略
+The module to fetch next instruction based on instruction memory cache and previous execution. 
 
-增加了 uart 相关引脚，并在模块中实例化了一个RAM模块，用于在正常模式和UART传输模式时进行访问读写的转换。
+- Instantiated a Block Memory Generator IP core as RAM to store instruction data.
+- Add Uart pinouts to RAM IP core to implements the conversion between Uart transfer mode and normal mode.
 
 ```verilog
 module Ifetc32(
@@ -108,7 +107,7 @@ module Ifetc32(
 
 ### Controller Module
 
-介绍
+The module to analyze instructions and transmit control signals to other function modules.
 
 ```verilog
 module Control32(
@@ -140,6 +139,8 @@ module Control32(
 
 ### Decoder Module
 
+The module to analyze instructions and get the data from the register, while writing data to register when necessary.
+
 ```verilog
 module Decode32(
     output [31:0] read_data_1,
@@ -161,6 +162,8 @@ module Decode32(
 
 
 ### ALU Module
+
+The module to do the actual calculation and get the results of the instructions.
 
 ```verilog
 module Executs32(
@@ -186,6 +189,8 @@ module Executs32(
 
 ### Data Memory
 
+The memory to interact with data memory cache. Instantiaed a Block Memory Generator IP core as RAM to store and read instruction data.
+
 ```verilog
 module dmemory32(
     //memWrite comes from controller, 1'b1 -> write data-memory.
@@ -205,6 +210,7 @@ module dmemory32(
 );
     
     //RAM
+    wire kickOff = upg_rst_i | (~upg_rst_i & upg_done_i); 
     RAM ram (
     .clka (kickOff ? clk : upg_clk_i),
     .wea (kickOff ? memWrite : upg_wen_i),
@@ -218,7 +224,7 @@ module dmemory32(
 
 ### MemoryOrIO Module
 
-用于衔接内存、IO
+The module to determine the actual data that will be read from memory or input device, or written to memeory or ourtput device.
 
 ```verilog
 module MemOrIO(
@@ -239,7 +245,9 @@ module MemOrIO(
 
 
 
-### 显示模块
+### Display Module
+
+Two modules that show the data on the output devices.
 
 ```verilog
 // LED灯管显示
@@ -263,81 +271,51 @@ module Display(
 
 
 
-### 
+### Others
 
+Primitive gate `BUFG` to de-twitter the input data.
 
-
-### 其它  
-
-BUFG 原语门
-
-
-
-## 测试
-
-### 基本测试
-
-- 测试一：开关与 led 灯对应测试（老师提供）
-
-```python
-start: lui   $1,0xFFFF			
-       ori   $28,$1,0xF000
-# 测试存读数据 -> 存啥显示啥        		
-switled:								
-	lw   $1,0xC70($28)				
-	sw   $1,0xC60($28)				
-	lw   $1,0xC72($28)
-	sw   $1,0xC62($28)	
-	j switled
+```verilog
+BUFG U1(.I(bt[1]), .O(bt_out[1]));
+BUFG U2(.I(bt[2]), .O(bt_out[2]));
+BUFG U3(.I(bt[3]), .O(bt_out[3]));
+BUFG U4(.I(bt[4]), .O(bt_out[4]));
 ```
 
-- 测试二：加法测试
-
-```python
-start: lui   $1,0xFFFF			
-       ori   $28,$1,0xF000
-       addi   $s0, $zero, 0
-       addi   $s2, $zero, 1
-       addi   $s3, $zero, 2
-# 测试两个数相加 -> 涵盖button功能
-# 0xFFFFFC64 65 66 67       		
-switled:
-	lw   $t0, 0xC64($28)
-	andi  $t0, $t0, 1
-	beq  $t0, $s2, new_number
-	j switled
-new_number:									
-	lw $t1, 0xC70($28)
-	sw $zero, 0xC64($28)				
-	addi $s0, $s0, 1
-	beq $s0, $s3, cal
-	add $s1, $zero, $t1
-	j switled
-cal:
-	add $t2, $t1, $s1
-	sw  $t2,0xC62($28)
-	addi $s0, $zero, 1
-	j switled
-```
-
-### 场景1
 
 
+## Tests
 
-### 场景2
+### Basic Test
+
+- *IO Test* (given by materials): uses `lw` and `sw` to check I/O module.
+- *Add Test*：checks loading several data one by one based on buttons.
+- *Memory Test* : checks whether `sw` can store data into data memory. 
+- *Light Test* : used to show Uart function and appreciate sister WeiWei.
+
+### Test 1
+
+简单说明一下整体逻辑和 IO 是怎么做的？
+
+### Test 2
 
 
 
 
 
-## 遇到的问题
+## Problems and Solutions
 
 ### git 仓库同步问题
 
 注意到 vivado 在运行时会生成许多文件，尤其在每个ip核内都会更新对应的 `.xml` 文件，记录下 `.coe` 文件的路径。可能是由于该问题，导致如果这些本地记录的配置被同步到远端以后，其他人 pull 以后会出现路径相关的问题。基于以上种种原因，我们在 git 仓库中添加了以下 `.gitignore` 文件：
 
 ```gitignore
-
+## dirs
+CPU.cache/
+CPU.hw/
+CPU.ip_user_files/
+CPU.runs/
+CPU.sim/
 ```
 
 ### 时钟 ip 核问题

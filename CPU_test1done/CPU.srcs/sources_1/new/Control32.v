@@ -33,7 +33,7 @@ module Control32(
     assign ALUSrc = (I_format || Lw || Sw);
   //  assign MemtoReg = Lw;
     assign RegWrite = (R_format || Lw || Jal || I_format) && (~Jr);
-    assign MemWrite = ((Sw == 1'b1) || (Alu_result[31:10] != 22'h3FFFFF)) ? 1'b1 : 1'b0;
+    assign MemWrite = ((Sw == 1'b1) && (Alu_result[31:10] != 22'h3FFFFF)) ? 1'b1 : 1'b0;
     assign Branch = (Opcode==6'b000100)? 1'b1:1'b0;
     assign nBranch = (Opcode==6'b000101)? 1'b1:1'b0;
     assign Jal = (Opcode==6'b000011)? 1'b1:1'b0;
