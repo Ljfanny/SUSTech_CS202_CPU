@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="cpu_sim_2_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="cpu_sim_2" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="41120000001fs"></ZoomEndTime>
+      <Cursor1Time time="21276996000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="122"></NameColumnWidth>
+      <ValueColumnWidth column_width="79"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="93" />
+   <wvobject fp_name="/cpu_sim_2/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/rst" type="logic">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/clock/clk_out1" type="logic">
+      <obj_property name="ElementShortName">clk_out1</obj_property>
+      <obj_property name="ObjectShortName">clk_out1</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/sw" type="array">
+      <obj_property name="ElementShortName">sw[23:0]</obj_property>
+      <obj_property name="ObjectShortName">sw[23:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/led" type="array">
+      <obj_property name="ElementShortName">led[23:0]</obj_property>
+      <obj_property name="ObjectShortName">led[23:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/bt" type="array">
+      <obj_property name="ElementShortName">bt[4:0]</obj_property>
+      <obj_property name="ObjectShortName">bt[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/seg_out" type="array">
+      <obj_property name="ElementShortName">seg_out[7:0]</obj_property>
+      <obj_property name="ObjectShortName">seg_out[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/seg_en" type="array">
+      <obj_property name="ElementShortName">seg_en[7:0]</obj_property>
+      <obj_property name="ObjectShortName">seg_en[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/memorio/io_rdata" type="array">
+      <obj_property name="ElementShortName">io_rdata[28:0]</obj_property>
+      <obj_property name="ObjectShortName">io_rdata[28:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/memorio/r_rdata" type="array">
+      <obj_property name="ElementShortName">r_rdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">r_rdata[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/memorio/r_wdata" type="array">
+      <obj_property name="ElementShortName">r_wdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">r_wdata[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/memorio/write_data" type="array">
+      <obj_property name="ElementShortName">write_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">write_data[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/ifetch/Instruction" type="array">
+      <obj_property name="ElementShortName">Instruction[31:0]</obj_property>
+      <obj_property name="ObjectShortName">Instruction[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/ifetch/branch_base_addr" type="array">
+      <obj_property name="ElementShortName">branch_base_addr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">branch_base_addr[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/ifetch/Addr_result" type="array">
+      <obj_property name="ElementShortName">Addr_result[31:0]</obj_property>
+      <obj_property name="ObjectShortName">Addr_result[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/ifetch/Read_data_1" type="array">
+      <obj_property name="ElementShortName">Read_data_1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">Read_data_1[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/ifetch/Branch" type="logic">
+      <obj_property name="ElementShortName">Branch</obj_property>
+      <obj_property name="ObjectShortName">Branch</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/ifetch/nBranch" type="logic">
+      <obj_property name="ElementShortName">nBranch</obj_property>
+      <obj_property name="ObjectShortName">nBranch</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/ifetch/Jmp" type="logic">
+      <obj_property name="ElementShortName">Jmp</obj_property>
+      <obj_property name="ObjectShortName">Jmp</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/ifetch/Jal" type="logic">
+      <obj_property name="ElementShortName">Jal</obj_property>
+      <obj_property name="ObjectShortName">Jal</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/ifetch/Jr" type="logic">
+      <obj_property name="ElementShortName">Jr</obj_property>
+      <obj_property name="ObjectShortName">Jr</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/ifetch/Zero" type="logic">
+      <obj_property name="ElementShortName">Zero</obj_property>
+      <obj_property name="ObjectShortName">Zero</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/ifetch/clock" type="logic">
+      <obj_property name="ElementShortName">clock</obj_property>
+      <obj_property name="ObjectShortName">clock</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/ifetch/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/ifetch/link_addr" type="array">
+      <obj_property name="ElementShortName">link_addr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">link_addr[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/ifetch/upg_rst_i" type="logic">
+      <obj_property name="ElementShortName">upg_rst_i</obj_property>
+      <obj_property name="ObjectShortName">upg_rst_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/ifetch/upg_clk_i" type="logic">
+      <obj_property name="ElementShortName">upg_clk_i</obj_property>
+      <obj_property name="ObjectShortName">upg_clk_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/ifetch/upg_wen_i" type="logic">
+      <obj_property name="ElementShortName">upg_wen_i</obj_property>
+      <obj_property name="ObjectShortName">upg_wen_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/ifetch/upg_adr_i" type="array">
+      <obj_property name="ElementShortName">upg_adr_i[13:0]</obj_property>
+      <obj_property name="ObjectShortName">upg_adr_i[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/ifetch/upg_dat_i" type="array">
+      <obj_property name="ElementShortName">upg_dat_i[31:0]</obj_property>
+      <obj_property name="ObjectShortName">upg_dat_i[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/ifetch/upg_done_i" type="logic">
+      <obj_property name="ElementShortName">upg_done_i</obj_property>
+      <obj_property name="ObjectShortName">upg_done_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/ifetch/PC" type="array">
+      <obj_property name="ElementShortName">PC[31:0]</obj_property>
+      <obj_property name="ObjectShortName">PC[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/ifetch/next_PC" type="array">
+      <obj_property name="ElementShortName">next_PC[31:0]</obj_property>
+      <obj_property name="ObjectShortName">next_PC[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/ifetch/kickOff" type="logic">
+      <obj_property name="ElementShortName">kickOff</obj_property>
+      <obj_property name="ObjectShortName">kickOff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/data_memory/clock" type="logic">
+      <obj_property name="ElementShortName">clock</obj_property>
+      <obj_property name="ObjectShortName">clock</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/data_memory/memWrite" type="logic">
+      <obj_property name="ElementShortName">memWrite</obj_property>
+      <obj_property name="ObjectShortName">memWrite</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/data_memory/address" type="array">
+      <obj_property name="ElementShortName">address[31:0]</obj_property>
+      <obj_property name="ObjectShortName">address[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/data_memory/writeData" type="array">
+      <obj_property name="ElementShortName">writeData[31:0]</obj_property>
+      <obj_property name="ObjectShortName">writeData[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/data_memory/readData" type="array">
+      <obj_property name="ElementShortName">readData[31:0]</obj_property>
+      <obj_property name="ObjectShortName">readData[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/data_memory/upg_rst_i" type="logic">
+      <obj_property name="ElementShortName">upg_rst_i</obj_property>
+      <obj_property name="ObjectShortName">upg_rst_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/data_memory/upg_clk_i" type="logic">
+      <obj_property name="ElementShortName">upg_clk_i</obj_property>
+      <obj_property name="ObjectShortName">upg_clk_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/data_memory/upg_wen_i" type="logic">
+      <obj_property name="ElementShortName">upg_wen_i</obj_property>
+      <obj_property name="ObjectShortName">upg_wen_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/data_memory/upg_adr_i" type="array">
+      <obj_property name="ElementShortName">upg_adr_i[13:0]</obj_property>
+      <obj_property name="ObjectShortName">upg_adr_i[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/data_memory/upg_dat_i" type="array">
+      <obj_property name="ElementShortName">upg_dat_i[31:0]</obj_property>
+      <obj_property name="ObjectShortName">upg_dat_i[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/data_memory/upg_done_i" type="logic">
+      <obj_property name="ElementShortName">upg_done_i</obj_property>
+      <obj_property name="ObjectShortName">upg_done_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/data_memory/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/data_memory/kickOff" type="logic">
+      <obj_property name="ElementShortName">kickOff</obj_property>
+      <obj_property name="ObjectShortName">kickOff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/clock/clk_out2" type="logic">
+      <obj_property name="ElementShortName">clk_out2</obj_property>
+      <obj_property name="ObjectShortName">clk_out2</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/clock/clk_in1" type="logic">
+      <obj_property name="ElementShortName">clk_in1</obj_property>
+      <obj_property name="ObjectShortName">clk_in1</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/read_data_1" type="array">
+      <obj_property name="ElementShortName">read_data_1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">read_data_1[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/read_data_2" type="array">
+      <obj_property name="ElementShortName">read_data_2[31:0]</obj_property>
+      <obj_property name="ObjectShortName">read_data_2[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/Instruction" type="array">
+      <obj_property name="ElementShortName">Instruction[31:0]</obj_property>
+      <obj_property name="ObjectShortName">Instruction[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/read_data" type="array">
+      <obj_property name="ElementShortName">read_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">read_data[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/ALU_result" type="array">
+      <obj_property name="ElementShortName">ALU_result[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ALU_result[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/Jal" type="logic">
+      <obj_property name="ElementShortName">Jal</obj_property>
+      <obj_property name="ObjectShortName">Jal</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/RegWrite" type="logic">
+      <obj_property name="ElementShortName">RegWrite</obj_property>
+      <obj_property name="ObjectShortName">RegWrite</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/MemtoReg" type="logic">
+      <obj_property name="ElementShortName">MemtoReg</obj_property>
+      <obj_property name="ObjectShortName">MemtoReg</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/RegDst" type="logic">
+      <obj_property name="ElementShortName">RegDst</obj_property>
+      <obj_property name="ObjectShortName">RegDst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/Sign_extend" type="array">
+      <obj_property name="ElementShortName">Sign_extend[31:0]</obj_property>
+      <obj_property name="ObjectShortName">Sign_extend[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/clock" type="logic">
+      <obj_property name="ElementShortName">clock</obj_property>
+      <obj_property name="ObjectShortName">clock</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/opcplus4" type="array">
+      <obj_property name="ElementShortName">opcplus4[31:0]</obj_property>
+      <obj_property name="ObjectShortName">opcplus4[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/Regs" type="array">
+      <obj_property name="ElementShortName">Regs[0:31][31:0]</obj_property>
+      <obj_property name="ObjectShortName">Regs[0:31][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/WriteReg" type="array">
+      <obj_property name="ElementShortName">WriteReg[4:0]</obj_property>
+      <obj_property name="ObjectShortName">WriteReg[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/WriteRegData" type="array">
+      <obj_property name="ElementShortName">WriteRegData[31:0]</obj_property>
+      <obj_property name="ObjectShortName">WriteRegData[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/ReadReg_1" type="array">
+      <obj_property name="ElementShortName">ReadReg_1[4:0]</obj_property>
+      <obj_property name="ObjectShortName">ReadReg_1[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/ReadReg_2" type="array">
+      <obj_property name="ElementShortName">ReadReg_2[4:0]</obj_property>
+      <obj_property name="ObjectShortName">ReadReg_2[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/R_WriteReg" type="array">
+      <obj_property name="ElementShortName">R_WriteReg[4:0]</obj_property>
+      <obj_property name="ObjectShortName">R_WriteReg[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/I_WriteReg" type="array">
+      <obj_property name="ElementShortName">I_WriteReg[4:0]</obj_property>
+      <obj_property name="ObjectShortName">I_WriteReg[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/Opcode" type="array">
+      <obj_property name="ElementShortName">Opcode[5:0]</obj_property>
+      <obj_property name="ObjectShortName">Opcode[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/i" type="array">
+      <obj_property name="ElementShortName">i[31:0]</obj_property>
+      <obj_property name="ObjectShortName">i[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/read_data_1" type="array">
+      <obj_property name="ElementShortName">read_data_1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">read_data_1[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/read_data_2" type="array">
+      <obj_property name="ElementShortName">read_data_2[31:0]</obj_property>
+      <obj_property name="ObjectShortName">read_data_2[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/Instruction" type="array">
+      <obj_property name="ElementShortName">Instruction[31:0]</obj_property>
+      <obj_property name="ObjectShortName">Instruction[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/read_data" type="array">
+      <obj_property name="ElementShortName">read_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">read_data[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/ALU_result" type="array">
+      <obj_property name="ElementShortName">ALU_result[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ALU_result[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/Jal" type="logic">
+      <obj_property name="ElementShortName">Jal</obj_property>
+      <obj_property name="ObjectShortName">Jal</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/RegWrite" type="logic">
+      <obj_property name="ElementShortName">RegWrite</obj_property>
+      <obj_property name="ObjectShortName">RegWrite</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/MemtoReg" type="logic">
+      <obj_property name="ElementShortName">MemtoReg</obj_property>
+      <obj_property name="ObjectShortName">MemtoReg</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/RegDst" type="logic">
+      <obj_property name="ElementShortName">RegDst</obj_property>
+      <obj_property name="ObjectShortName">RegDst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/Sign_extend" type="array">
+      <obj_property name="ElementShortName">Sign_extend[31:0]</obj_property>
+      <obj_property name="ObjectShortName">Sign_extend[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/clock" type="logic">
+      <obj_property name="ElementShortName">clock</obj_property>
+      <obj_property name="ObjectShortName">clock</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/opcplus4" type="array">
+      <obj_property name="ElementShortName">opcplus4[31:0]</obj_property>
+      <obj_property name="ObjectShortName">opcplus4[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/Regs" type="array">
+      <obj_property name="ElementShortName">Regs[0:31][31:0]</obj_property>
+      <obj_property name="ObjectShortName">Regs[0:31][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/WriteReg" type="array">
+      <obj_property name="ElementShortName">WriteReg[4:0]</obj_property>
+      <obj_property name="ObjectShortName">WriteReg[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/WriteRegData" type="array">
+      <obj_property name="ElementShortName">WriteRegData[31:0]</obj_property>
+      <obj_property name="ObjectShortName">WriteRegData[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/ReadReg_1" type="array">
+      <obj_property name="ElementShortName">ReadReg_1[4:0]</obj_property>
+      <obj_property name="ObjectShortName">ReadReg_1[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/ReadReg_2" type="array">
+      <obj_property name="ElementShortName">ReadReg_2[4:0]</obj_property>
+      <obj_property name="ObjectShortName">ReadReg_2[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/R_WriteReg" type="array">
+      <obj_property name="ElementShortName">R_WriteReg[4:0]</obj_property>
+      <obj_property name="ObjectShortName">R_WriteReg[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/I_WriteReg" type="array">
+      <obj_property name="ElementShortName">I_WriteReg[4:0]</obj_property>
+      <obj_property name="ObjectShortName">I_WriteReg[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/Opcode" type="array">
+      <obj_property name="ElementShortName">Opcode[5:0]</obj_property>
+      <obj_property name="ObjectShortName">Opcode[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cpu_sim_2/test/decoder/i" type="array">
+      <obj_property name="ElementShortName">i[31:0]</obj_property>
+      <obj_property name="ObjectShortName">i[31:0]</obj_property>
+   </wvobject>
+</wave_config>

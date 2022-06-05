@@ -310,6 +310,31 @@ BUFG U4(.I(bt[4]), .O(bt_out[4]));
 
 ## Tests
 
+### IO Method
+
+To input several data, the button signal is used and processed in the assembly.
+
+```mips
+initialization:
+	lui $1, 0xFFFF			
+	ori $28, $1, 0xF000
+	
+# loop while button signal is 0. used to wait for button signal.
+bt_0:   
+	lw $t0, 0xC50($28)
+	beq $t0, $zero, bt_0
+	
+# loop while button signal is 1. used to eliminate button signal.
+bt_1:
+	lw $t0, 0xC50($28)
+	bne $t0, $zero, bt_1
+	
+	#load word
+	lw $s1, 0xC70($28)
+```
+
+
+
 ### Basic Test
 
 - *IO Test* (given by materials): uses `lw` and `sw` to check I/O module.
@@ -319,7 +344,7 @@ BUFG U4(.I(bt[4]), .O(bt_out[4]));
 
 ### Test 1
 
-简单说明一下整体逻辑和 IO 是怎么做的？
+简单说明一下整体逻辑？
 
 ### Test 2
 

@@ -49,7 +49,7 @@ module Display(
         {i0,i1,i2,i3,i4,i5,i6,i7} = {8{null}}; 
     end
 
-    always @(posedge clk, posedge rst) begin
+    always @(*) begin
         if (rst)
             {i0,i1,i2,i3,i4,i5,i6,i7} = {8{null}}; 
         else if (ioSeg) begin

@@ -1,12 +1,12 @@
 .data 0x0000				      		
       buf: .word 0x0000
 .text 0x0000
-# ³õÊ¼»¯				
+# åˆå§‹åŒ–				
 initialization: 
 	lui $1, 0xFFFF			
         ori $28, $1, 0xF000
-        #a0, a1´æa, b
-        # ³õÊ¼»¯³É0-7
+        #a0, a1å­˜a, b
+        # åˆå§‹åŒ–æˆ0-7
         ori $s0, $zero, 0
         ori $s1, $zero, 1 
         ori $s2, $zero, 2 
@@ -53,7 +53,7 @@ bt_1_cs:
 	beq $1, $s5, case5
 	beq $1, $s6, case6
 	beq $1, $s7, case7
-#ÅĞ¶ÏÊÇ·ñ»ØÎÄ²¢ÏÔÊ¾Êı¾İ	
+#åˆ¤æ–­æ˜¯å¦å›æ–‡å¹¶æ˜¾ç¤ºæ•°æ®	
 case0:
 	lui $t0, 0x0000
         sw $t0, 0xC40($28)
@@ -72,18 +72,18 @@ bt_01:
 	sw $t0, 0xC60($28)
 	addi $t1, $zero, 0
 	addi $t2, $t0, 0
-	#ÓÃÓÚ¼ÆÊı
+	#ç”¨äºè®¡æ•°
 cal_bits:
 	srl $t2, $t2, 1
 	addi $t1, $t1, 1
 	bne $t2, $zero, cal_bits
-	#Î»Êı $t1
-	#t2 Î»ÒÆ
+	#ä½æ•° $t1
+	#t2 ä½ç§»
 	addi $t2, $t0, 0
-	#·´×ªºóµÄ½á¹û
+	#åè½¬åçš„ç»“æœ
 	addi $t3, $zero, 0
 	for_case0: 
-		   #·Å½á¹û
+		   #æ”¾ç»“æœ
 		   and $t4, $t2, $s1
 		   add $t3, $t3, $t4
 		   addi $t1, $t1, -1
@@ -102,7 +102,7 @@ cal_bits:
 		   or $t4, $t0, $t5
 		   sw $t4, 0xC40($28)
 		   j exit
-#ÏÔÊ¾Êä³ö£¬ÔİÊ±ÒÔledµÆµÄĞÎÊ½
+#æ˜¾ç¤ºè¾“å‡ºï¼Œæš‚æ—¶ä»¥ledç¯çš„å½¢å¼
 case1: 
 	lui $t0, 0x0001
 	#add $t1, $t0, $t8
@@ -126,7 +126,7 @@ over:
 	add $t2, $t9, $t0				
 	sw $t2, 0xC40($28)
         j exit
-#¼ÆËãa&b
+#è®¡ç®—a&b
 case2:
 	lui $t0, 0x0002
         sw $t0, 0xC40($28)      
@@ -134,7 +134,7 @@ case2:
       	sw $t1, 0xC60($28)
       	#sw $t0, 0xC40($28)
       	j exit
-#¼ÆËãa|b     
+#è®¡ç®—a|b     
 case3: 
 	lui $t0, 0x0003
         sw $t0, 0xC40($28)
@@ -142,7 +142,7 @@ case3:
       	sw $t1, 0xC60($28)
       	#sw $t0, 0xC40($28)
       	j exit
-#¼ÆËãa^b       
+#è®¡ç®—a^b       
 case4:
 	lui $t0, 0x0004
         sw $t0, 0xC40($28)
@@ -150,7 +150,7 @@ case4:
       	sw $t1, 0xC60($28)
       	#sw $t0, 0xC40($28)
       	j exit
-#¼ÆËãa<<b
+#è®¡ç®—a<<b
 case5:
 	lui $t0, 0x0005
         sw $t0, 0xC40($28)
@@ -158,7 +158,7 @@ case5:
       	sw $t1, 0xC60($28)
       	#sw $t0, 0xC40($28)
       	j exit
-#¼ÆËãa>>b      
+#è®¡ç®—a>>b      
 case6:
 	lui $t0, 0x0006
         sw $t0, 0xC40($28)
@@ -166,7 +166,7 @@ case6:
       	sw $t1, 0xC60($28)
       	#sw $t0, 0xC40($28)
       	j exit      
-#¼ÆËãËãÊıÓÒÒÆ
+#è®¡ç®—ç®—æ•°å³ç§»
 case7:
 	lui $t0, 0x0007
         sw $t0, 0xC40($28)
