@@ -33,15 +33,11 @@ The project implemented a single-cycle CPU based on the Minisys instruction set 
 
 ## Modules Info
 
-### IP Core
-
-- Clocking Wizard
-- Block Memory Generator * 2 
-- Uart_bmpg_0
-
 ### Top Module
 
 The top module of the whole CPU, instantiated and connected function modules and necesseary IP cores including Clocking Wizardc, Uart_bpmg_0, etc。
+
+![](images/schema.png)
 
 ```verilog
 module Top(
@@ -58,7 +54,19 @@ module Top(
 );
 ```
 
+### IP Core
 
+- Clocking Wizard
+
+<img src="images/clk.png" style="zoom:50%;" />
+
+- Block Memory Generator * 2 
+
+<img src="images/ram.png" style="zoom:40%;" />
+
+- Uart_bmpg_0
+
+<img src="images/uart.png" style="zoom:40%;" />
 
 ### Instruction Fetech Module
 
@@ -66,6 +74,8 @@ The module to fetch next instruction based on instruction memory cache and previ
 
 - Instantiated a Block Memory Generator IP core as RAM to store instruction data.
 - Add Uart pinouts to RAM IP core to implements the conversion between Uart transfer mode and normal mode.
+
+<img src="images/ifetch.png" style="zoom:35%;" />
 
 ```verilog
 module Ifetc32(
@@ -109,6 +119,8 @@ module Ifetc32(
 
 The module to analyze instructions and transmit control signals to other function modules.
 
+<img src="images/ctrl.png" style="zoom:35%;" />
+
 ```verilog
 module Control32(
     input [5:0] Opcode,
@@ -141,6 +153,8 @@ module Control32(
 
 The module to analyze instructions and get the data from the register, while writing data to register when necessary.
 
+<img src="images/decoder.png" style="zoom:40%;" />
+
 ```verilog
 module Decode32(
     output [31:0] read_data_1,
@@ -164,6 +178,8 @@ module Decode32(
 ### ALU Module
 
 The module to do the actual calculation and get the results of the instructions.
+
+<img src="images/alu.png" style="zoom:40%;" />
 
 ```verilog
 module Executs32(
@@ -190,6 +206,8 @@ module Executs32(
 ### Data Memory
 
 The memory to interact with data memory cache. Instantiaed a Block Memory Generator IP core as RAM to store and read instruction data.
+
+<img src="images/dm.png" style="zoom:40%;" />
 
 ```verilog
 module dmemory32(
@@ -226,6 +244,8 @@ module dmemory32(
 
 The module to determine the actual data that will be read from memory or input device, or written to memeory or ourtput device.
 
+<img src="images/memorio.png" style="zoom:40%;" />
+
 ```verilog
 module MemOrIO(
     input mRead,
@@ -249,16 +269,11 @@ module MemOrIO(
 
 Two modules that show the data on the output devices.
 
-```verilog
-// LED灯管显示
-module Leds(
-    input clk,
-    input rst,
-    input ioWrite,
-    input[31:0] write_data,
-    output reg[23:0] led
-);
+<img src="images/disp.png" style="zoom:50%;" />
 
+<img src="images/led.png" style="zoom:50%;" />
+
+```verilog
 // 七段数码管显示
 module Display(
     input clk, rst,
@@ -266,6 +281,15 @@ module Display(
     input[31:0] write_data,
     output [7:0] seg_out,
     output [7:0] seg_en
+);
+    
+// LED灯管显示
+module Leds(
+    input clk,
+    input rst,
+    input ioWrite,
+    input[31:0] write_data,
+    output reg[23:0] led
 );
 ```
 

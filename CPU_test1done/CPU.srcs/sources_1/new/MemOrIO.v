@@ -34,7 +34,7 @@ module MemOrIO(
         //have something wrong.
             write_data = (mWrite == 1'b1) ? r_rdata : {{8{1'b0}}, r_rdata[23:0]};
         else
-            write_data = 32'hZZZZZZZZ;
+            write_data = write_data;
    end
    
    always @* begin
