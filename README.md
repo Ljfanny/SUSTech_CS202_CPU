@@ -348,7 +348,23 @@ bt_1:
 
 ### Test 2
 
+First initialized the data, entered the caseLoop loop (digital tube display: 123), waited for the button signal and then read the dipswitch to enter a different case.
 
+In case0, we first use a loop to wait for the input of the array size (at this point the digital tube shows: 234). In order to prevent false inputs, we specifically read only the last four digits of the dipswitch, and if the result is still greater than 10, the loop will not be skipped. The next number entered will be read into memory and displayed with the digital tube and dipswitches.
+
+In case1, we need to sort the array. First we loop through the arrays, carry them to the address where their address +40 is, and then perform a bubble sort on them. In case1~3, the operation will display the leds corresponding to the dip switches of the case after it is completed.
+
+In case2, we need to ask for the complement of the original array. We first determine the positive and negative, and then operate on them separately and store them at the original address +80.
+
+In case3, we need to sort the complement of the original code, which is not easy. Again we need to move them to the address +120 first, followed immediately by a bubble sort. In the bubble sort, we need to first determine whether two numbers are of the same sign, and if they are the same, compare them directly; otherwise we need to determine which number is negative and then put it on the left.
+
+Case4 is arguably the easiest. In this case, we only need to take out the first and last numbers of space2 and then subtract them together. Finally we output on the dip switch.
+
+Case5 is slightly more difficult than case4, we still need to determine if the largest and smallest numbers have the same sign. If the sign is not the same, we need to subtract the inverse of the negative number and add 1.
+
+In case6, we need to enter two numbers, which represent the first space and index, and here we only need two loops to find the target number and display it.
+
+In the last case, we need to use a very large counter to ensure the alternate display interval. Secondly, we listen to the button signal after each time interval, which means that if you want to exit this case, you need to press and hold the button at the end of an interval.
 
 
 
