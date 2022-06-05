@@ -233,7 +233,7 @@ case7:
       bne $t4, $s1, case7
       addi $t4, $zero, 0
       addi $t2, $t2, 1
-      addi $t4, $t4, -4
+      addi $t4, $t4, -
 case71:
       addi $t3, $t3, 1
       addi $t4, $t4, 4        #$t4是space0的地址
