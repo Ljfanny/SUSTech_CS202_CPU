@@ -61,14 +61,14 @@ module Display(
              seg3_num <= (num % 10000) / 1000;   
              seg4_num <= num / 10000;
              seg5_num <= cse;
-             if (cse == 1) begin
-                          {i0, i3, i4, i5, i6, i7} = {seg5_out, seg4_out,seg3_out,seg2_out,seg1_out,seg0_out};
-                          {i1, i2} ={2{null}};
-             end
-             else begin
-                    {i0} = {seg5_out};
-                    {i1, i2, i3, i4, i5, i6, i7} ={7{null}};
-             end
+             //if (cse == 1) begin
+            {i0, i3, i4, i5, i6, i7} = {seg5_out, seg4_out,seg3_out,seg2_out,seg1_out,seg0_out};
+            {i1, i2} ={2{null}};
+             //end
+            // else begin
+                   // {i0} = {seg5_out};
+                   // {i1, i2, i3, i4, i5, i6, i7} ={7{null}};
+             //end
         end
         else
              {i0,i1,i2,i3,i4,i5,i6,i7} = {i0,i1,i2,i3,i4,i5,i6,i7};    
