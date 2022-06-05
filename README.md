@@ -1,36 +1,37 @@
 # SUSTech_CS202_CPU
 
-## 简介
+## Introduction
 
-小组分工
+本小组 CPU 实现了
+
+### Grouping
 
 - 12011543 林洁芳：
 - 12011411 吴笑丰：
 - 12011906 汤奕飞：
 
-本小组 CPU 实现了
+### Implementation
 
-### 实现指令及功能
+- Implemented all the instructions in Minisys Instruction Set Architecture
+- Implemented UART interface to allow loading different programs (`.coe` files) to the CPU for execution without re-programming the bitstream file to the FPGA chip.
+- Implemented the use of multiple IO devices to enable users to interact with the CPU.
 
-- Minisys架构中的全部指令
-- 利用 UART 接口实现在不重新烧写FPGA芯片的前提下，加载不同的程序到CPU上执行
+### I/O Devices
 
-### 使用的外部设备
+- 5 $*$ buttons + 1 $*$ reset button
+- 8 $*$ 7-segment digital tubes
+- 24 $*$ switches
+- 24 $*$ LEDs
 
-- 5个按钮
-- 7段数码管
-- 24个拨码开关
-- 24个 Led 灯
+### Data Segement
 
-### 数据段
+- `0x00000000` - `0x00010000` ：RAM，stores instructions in `.text` label and data in `.data` label.
+- `0xFFFFFC40` - `0xFFFFFC42`：Stores 7-segment digital tubes’ data.  C40 - C41 is used to store 16 bits integer，the first 3 bits of C42 is used to store 8 integer, showing the test statements.
+- `0xFFFFFC50` - `0xFFFFFC53` ：Stores button data to determine whether the user has entered through IO.
+- `0xFFFFFC60` - `0xFFFFFC63` ：Stores data of LED[23:0].
+- `0xFFFFFC70` - `0xFFFFFC73` ：Stores data of switch[23:0].
 
-- `0x00000000` - `0x00010000` ：RAM，`.data`
-- `0xFFFFFC40` - `0xFFFFFC42`：七段数码管，其中 C40 - C41 用于存  16bits 整数，C42的前3bit用于存 0 - 7 8个整数
-- `0xFFFFFC50` - `0xFFFFFC53` ：button，用于判断是否输入
-- `0xFFFFFC60` - `0xFFFFFC63` ：led[23:0] ，只能用于 `sw`
-- `0xFFFFFC70` - `0xFFFFFC73` ：switch[23:0] ，只能用于 `lw`
-
-## 模块介绍
+## Modules Info
 
 ### IP Core
 
