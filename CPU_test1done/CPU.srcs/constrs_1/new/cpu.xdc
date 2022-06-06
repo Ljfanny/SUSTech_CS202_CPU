@@ -95,8 +95,8 @@ set_property IOSTANDARD LVCMOS33 [get_ports {sw[2]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {sw[1]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {sw[0]}]
 
-set_property PACKAGE_PIN Y18 [get_ports {fpga_clk}]
-set_property IOSTANDARD LVCMOS33 [get_ports {fpga_clk}]
+set_property PACKAGE_PIN Y18 [get_ports {clk}]
+set_property IOSTANDARD LVCMOS33 [get_ports {clk}]
 
 set_property PACKAGE_PIN P20 [get_ports {fpga_rst}]
 set_property IOSTANDARD LVCMOS33 [get_ports {fpga_rst}]
