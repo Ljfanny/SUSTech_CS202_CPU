@@ -27,17 +27,18 @@ module Top(
 //    assign bt_out = bt;
     // BUFG U0(.I(bt[0]), .O(bt_out[0]));
     assign bt_out[0] = 0;
-    BUFG U1(.I(bt[1]), .O(bt_out[1]));
-    BUFG U2(.I(bt[2]), .O(bt_out[2]));
-    BUFG U3(.I(bt[3]), .O(bt_out[3]));
-    BUFG U4(.I(bt[4]), .O(bt_out[4]));
-
+   
+    // BUFG U1(.I(bt[1]), .O(bt_out[1]));
+    // BUFG U2(.I(bt[2]), .O(bt_out[2]));
+    // BUFG U3(.I(bt[3]), .O(bt_out[3]));
+    // BUFG U4(.I(bt[4]), .O(bt_out[4]));
 
  //-------------------------------------- UART ------------------------------------------
 
     //start uart communicate at high level
     wire start_pg; //active high
     assign start_pg = bt[0]; //right
+    
 
     // UART Programmer Pinouts
     wire upg_clk_o;
@@ -147,8 +148,6 @@ module Top(
     //ioread(convert sw into r_rdata)
 //    wire[23:0] io_read_data;
 //    wire[4:0] io_bt_data;
-
-     
     
 //    reg[4:0] bt_delay;
 //    IOread read_sw_module(sw, bt_out, io_read_data, io_bt_data);
@@ -165,12 +164,14 @@ module Top(
     //io - led
     wire[7:0] dis_seg_out, dis_seg_en;
     Leds io_led(clk_23, rst, ioWrite, write_data, led);
-    Display display(clk, rst, ioSeg, write_data, dis_seg_out, dis_seg_en);
-//    Buttons io_button(clk, rst, bt, bt_out);
+    Display display(clk_23, rst, ioSeg, write_data, dis_seg_out, dis_seg_en);
+
    
-    always @(posedge clk) begin
+    always @(posedge clk_23) begin
          seg_out = dis_seg_out;
          seg_en = dis_seg_en;
     end
+
+     Buttons io_button(clk_23, rst, bt, bt_out);
    
 endmodule

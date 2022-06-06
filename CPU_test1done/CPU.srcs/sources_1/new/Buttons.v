@@ -6,7 +6,7 @@ module Buttons(
         input[4:0] but,
         output[4:0] but_out
 );
-        ButtonMistaken button_right(clk, but[0], but_out[0]);
+        // ButtonMistaken button_right(clk, but[0], but_out[0]);
         ButtonMistaken button_left(clk, but[1], but_out[1]);
         ButtonMistaken button_up(clk, but[2], but_out[2]);
         ButtonMistaken button_mid(clk, but[3], but_out[3]);

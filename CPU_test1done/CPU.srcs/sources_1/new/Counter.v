@@ -28,7 +28,7 @@ always @(posedge clk) begin
 end
 
 always @(posedge clk) begin
-    if(cnt == 10_0000) begin
+    if(cnt == 1_00) begin
         out <= record[0];
     end
 end
