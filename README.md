@@ -25,13 +25,13 @@ The project implemented a single-cycle CPU based on the Minisys instruction set 
 
 ### Data Segment
 
-| Address                     | Stroage                                                  |
-| --------------------------- | -------------------------------------------------------- |
+| Address                     | Storage                                                 |
+| --------------------------- | ------------------------------------------------------- |
 | `0x00000000` - `0x00010000` | instructions in `.text` label and data in `.data` label |
-| `0xFFFFFC40` - `0xFFFFFC42` | 7-segment digital tubes’ data                            |
-| `0xFFFFFC50` - `0xFFFFFC53` | data of `button[4:0]`                                    |
-| `0xFFFFFC60` - `0xFFFFFC63` | data of `LED[23:0]`                                      |
-| `0xFFFFFC70` - `0xFFFFFC73` | data of `switch[23:0]`                                   |
+| `0xFFFFFC40` - `0xFFFFFC42` | 7-segment digital tubes’ data                           |
+| `0xFFFFFC50` - `0xFFFFFC53` | data of `button[4:0]`                                   |
+| `0xFFFFFC60` - `0xFFFFFC63` | data of `LED[23:0]`                                     |
+| `0xFFFFFC70` - `0xFFFFFC73` | data of `switch[23:0]`                                  |
 
 - `0x00000000` - `0x00010000` ：RAM，stores instructions in `.text` label and data in `.data` label.
 - `0xFFFFFC40` - `0xFFFFFC42`：Stores 7-segment digital tubes’ data.  `C40 - C41` is used to store 16 bits integer，the first 3 bits of `C42` is used to store 8 integer, showing the test statements.
@@ -305,13 +305,14 @@ module Leds(
 
 ### Others
 
-Primitive gate `BUFG` to de-twitter the input data.
+Buttons Module to de-twitter the button signal.
 
 ```verilog
-BUFG U1(.I(bt[1]), .O(bt_out[1]));
-BUFG U2(.I(bt[2]), .O(bt_out[2]));
-BUFG U3(.I(bt[3]), .O(bt_out[3]));
-BUFG U4(.I(bt[4]), .O(bt_out[4]));
+module Buttons(
+        input clk, rst,
+        input[4:0] but,
+        output[4:0] but_out
+);
 ```
 
 
